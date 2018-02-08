@@ -112,6 +112,9 @@ autocmd BufNewFile *.{h,hpp} call <SID>insert_gates()
 nnoremap <esc><esc> <esc>:nohl<cr><esc>
 vnoremap <esc><esc> <esc>:nohl<cr><esc>
 
+" root using w!! command
+cmap w!! w !sudo tee > /dev/null %
+
 "set nocompatible
 "filetype off
 "set rtp+=~/.vim/bundle/Vundle.vim
