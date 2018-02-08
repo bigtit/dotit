@@ -1,7 +1,7 @@
 set nocompatible
 set backspace=2
 set fileformat=unix
-colorscheme molokai
+colorscheme desert
 set encoding=utf-8
 set fenc=utf-8
 set guifont=Consolas:h10:cANSI
