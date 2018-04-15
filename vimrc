@@ -123,6 +123,11 @@ cmap w!! w !sudo tee > /dev/null %
 "Plugin 'gmarik/Vundle.vim'
 "Plugin 'dyng/ctrlsf.vim'
 "Plugin 'octol/vim-cpp-enhanced-highlight'
+"Plugin 'skywind3000/asyncrun.vim'
 
 "call vundle#end()
 "filetype plugin indent on
+
+"alias for plugin commands
+"command <ar> <AsyncRun>
+"command <cf> <CtrlSF>
