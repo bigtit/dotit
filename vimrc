@@ -115,19 +115,9 @@ vnoremap <esc><esc> <esc>:nohl<cr><esc>
 " root using w!! command
 cmap w!! w !sudo tee > /dev/null %
 
-"set nocompatible
-"filetype off
-"set rtp+=~/.vim/bundle/Vundle.vim
-"call vundle#begin()
-
-"Plugin 'gmarik/Vundle.vim'
-"Plugin 'dyng/ctrlsf.vim'
-"Plugin 'octol/vim-cpp-enhanced-highlight'
-"Plugin 'skywind3000/asyncrun.vim'
-
-"call vundle#end()
-"filetype plugin indent on
-
-"alias for plugin commands
-"command <ar> <AsyncRun>
-"command <cf> <CtrlSF>
+" vim-plug instead of vundle
+call plug#begin('~/.vim/plugged')
+Plug 'dyng/ctrlsf.vim'
+Plug 'octol/vim-cpp-enhanced-highlight'
+Plug 'skywind3000/asyncrun.vim'
+call plug#end()
