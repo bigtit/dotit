@@ -116,8 +116,8 @@ vnoremap <esc><esc> <esc>:nohl<cr><esc>
 cmap w!! w !sudo tee > /dev/null %
 
 " vim-plug instead of vundle
-call plug#begin('~/.vim/plugged')
-Plug 'dyng/ctrlsf.vim'
-Plug 'octol/vim-cpp-enhanced-highlight'
-Plug 'skywind3000/asyncrun.vim'
-call plug#end()
+" call plug#begin('~/.vim/plugged')
+" Plug 'dyng/ctrlsf.vim'
+" Plug 'octol/vim-cpp-enhanced-highlight'
+" Plug 'skywind3000/asyncrun.vim'
+" call plug#end()
