@@ -1,4 +1,4 @@
-colo monokai-chris
+colo desert
 set nocp
 set ff=unix
 set enc=utf-8
@@ -30,6 +30,7 @@ set so=3
 set sm
 set cul
 set cuc
+au ColorScheme * hi CursorLine ctermfg=NONE ctermbg=DarkGray cterm=NONE
 "bak
 set wb
 set nobk
@@ -64,13 +65,13 @@ endf
 "auto complete
 "insert mode only
 "tags
-ino <c-]> <c-x><c-]>
+ino <c-]> <c-X><c-]>
 "filename
-ino <c-f> <c-x><c-f>
+ino <c-f> <c-X><c-f>
 "macro
-ino <c-d> <c-x><c-d>
+ino <c-d> <c-X><c-d>
 "header file
-ino <c-i> <c-x><c-i>
+ino <c-i> <c-X><c-i>
 
 "esc
 ino jk <esc>
@@ -95,8 +96,8 @@ vn <esc><esc> <esc>:nohl<cr><esc>
 cm w!! w !sudo tee > /dev/null %
 
 "vim-plug instead of vundle
-"call plug#begin('~/.vim/plugged')
-"Plug 'dyng/ctrlsf.vim'
-"Plug 'octol/vim-cpp-enhanced-highlight'
-"Plug 'skywind3000/asyncrun.vim'
-"call plug#end()
+call plug#begin('~/.vim/plugged')
+Plug 'dyng/ctrlsf.vim'
+Plug 'octol/vim-cpp-enhanced-highlight'
+Plug 'skywind3000/asyncrun.vim'
+call plug#end()
