@@ -26,12 +26,16 @@ set fen
 set fdm=syntax
 set fdl=100
 
+"status bar
 set ls=2
+set stl=%<%F%m\ \[%{&ff}:%{&fenc}:%Y%{&bomb?'\:BOM':''}]\ \ \[%{strftime('%Y/%b/%d\ %a\ %I:%M\ %p')}\]\ %=\ Row:%l\/%L\(%p%%)\ Col:%c%V\ %P
+
 set so=3
 set sm
 set cul
 set cuc
-au ColorScheme desert hi CursorLine ctermfg=NONE ctermbg=DarkGray cterm=NONE
+au ColorScheme desert hi CursorLine ctermfg=NONE ctermbg=black cterm=NONE
+au ColorScheme desert hi CursorColumn ctermfg=NONE ctermbg=black cterm=NONE
 "bak
 set wb
 set nobk
@@ -82,9 +86,9 @@ vn jk <esc>
 "header macro c/cpp
 fu! s:insert_gates()
   let gatename = substitute(toupper(expand("%:t")), "\\.", "_", "g")
-  execute "normal! i#ifndef " . gatename
-  execute "normal! o#define " . gatename . " "
-  execute "normal! Go#endif /* " . gatename . " */"
+  exe "normal! i#ifndef " . gatename
+  exe "normal! o#define " . gatename . " "
+  exe "normal! Go#endif /* " . gatename . " */"
   normal! kk
 endf
 au BufNewFile *.{h,hh,hpp} call <SID>insert_gates()
