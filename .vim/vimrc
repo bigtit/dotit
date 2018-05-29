@@ -30,7 +30,7 @@ set so=3
 set sm
 set cul
 set cuc
-au ColorScheme * hi CursorLine ctermfg=NONE ctermbg=DarkGray cterm=NONE
+au ColorScheme desert hi CursorLine ctermfg=NONE ctermbg=DarkGray cterm=NONE
 "bak
 set wb
 set nobk
