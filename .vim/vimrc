@@ -1,4 +1,4 @@
-colorscheme desert
+colo monokai-chris
 set nocp
 set ff=unix
 set enc=utf-8
@@ -29,6 +29,8 @@ set ls=2
 set so=3
 set sm
 set cul
+set cuc
+"bak
 set wb
 set nobk
 set hi=50
@@ -44,14 +46,14 @@ if has("gui_running")
 endif
 
 "pair
-:ino ( ()<ESC>i
-:ino ) <c-r>=ClosePair(')')<CR>
-:ino { {}<ESC>i
-:ino } <c-r>=ClosePair('}')<CR>
-:ino [ []<ESC>i
-:ino ] <c-r>=ClosePair(']')<CR>
-:ino " ""<ESC>i
-:ino ' ''<ESC>i
+:ino ( ()<esc>i
+:ino ) <c-r>=ClosePair(')')<cr>
+:ino { {}<esc>i
+:ino } <c-r>=ClosePair('}')<cr>
+:ino [ []<esc>i
+:ino ] <c-r>=ClosePair(']')<cr>
+:ino " ""<esc>i
+:ino ' ''<esc>i
 fu! ClosePair(char)
   if getline('.')[col('.') - 1] == a:char
     return "\<Right>"
@@ -62,13 +64,13 @@ endf
 "auto complete
 "insert mode only
 "tags
-ino <C-]> <C-X><C-]>
+ino <c-]> <c-x><c-]>
 "filename
-ino <C-F> <C-X><C-F>
+ino <c-f> <c-x><c-f>
 "macro
-ino <C-D> <C-X><C-D>
+ino <c-d> <c-x><c-d>
 "header file
-ino <C-I> <C-X><C-I>
+ino <c-i> <c-x><c-i>
 
 "esc
 ino jk <esc>
