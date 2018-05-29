@@ -1,0 +1,100 @@
+colorscheme desert
+set nocp
+set ff=unix
+set enc=utf-8
+set fenc=utf-8
+set ambw=double
+"indent
+set bs=2
+set cin
+set si
+set sw=2
+set ts=2
+set et
+"look
+set nu
+set ru
+"search
+set is
+set hls
+set hid
+set acd
+set scs
+"fold
+set fen
+set fdm=syntax
+set fdl=100
+
+set ls=2
+set so=3
+set sm
+set cul
+set wb
+set nobk
+set hi=50
+set mouse=a
+syn on
+set list lcs=tab:..,eol:$
+filetype plugin indent on
+au BufRead,BufNewFile *.cpp,*,cc,*.c,*.h,*.hh,*.hpp,*.py,*.php,*.rb,*.js,*.node,*.sh,*.vim,*.css 2match Underlined /.\%81v/
+if has("gui_running")
+  set lines=35 columns=120
+  "set guioptions-=m
+  set guioptions-=T
+endif
+
+"pair
+:ino ( ()<ESC>i
+:ino ) <c-r>=ClosePair(')')<CR>
+:ino { {}<ESC>i
+:ino } <c-r>=ClosePair('}')<CR>
+:ino [ []<ESC>i
+:ino ] <c-r>=ClosePair(']')<CR>
+:ino " ""<ESC>i
+:ino ' ''<ESC>i
+fu! ClosePair(char)
+  if getline('.')[col('.') - 1] == a:char
+    return "\<Right>"
+  else
+    return a:char
+  endif
+endf
+"auto complete
+"insert mode only
+"tags
+ino <C-]> <C-X><C-]>
+"filename
+ino <C-F> <C-X><C-F>
+"macro
+ino <C-D> <C-X><C-D>
+"header file
+ino <C-I> <C-X><C-I>
+
+"esc
+ino jk <esc>
+ino <esc> <nop>
+vn jk <esc>
+
+"header macro c/cpp
+fu! s:insert_gates()
+  let gatename = substitute(toupper(expand("%:t")), "\\.", "_", "g")
+  execute "normal! i#ifndef " . gatename
+  execute "normal! o#define " . gatename . " "
+  execute "normal! Go#endif /* " . gatename . " */"
+  normal! kk
+endf
+au BufNewFile *.{h,hh,hpp} call <SID>insert_gates()
+
+"highlight search off
+nn <esc><esc> <esc>:nohl<cr><esc>
+vn <esc><esc> <esc>:nohl<cr><esc>
+
+"root using w!! command
+cm w!! w !sudo tee > /dev/null %
+
+"vim-plug instead of vundle
+"call plug#begin('~/.vim/plugged')
+"Plug 'dyng/ctrlsf.vim'
+"Plug 'octol/vim-cpp-enhanced-highlight'
+"Plug 'skywind3000/asyncrun.vim'
+"call plug#end()
