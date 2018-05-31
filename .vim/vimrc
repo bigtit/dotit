@@ -12,7 +12,7 @@ set ffs=unix,dos,mac
 set enc=utf-8
 let &fenc=&enc
 let &tenc=&enc
-set fencs=utf-8,gb2312,gbk,iso-2022-jp,euc-jp,sjis,ucs-bom,atin1
+set fencs=utf-8,gb2312,gbk,iso-2022-jp,euc-jp,sjis,ucs-bom,latin1
 set ambw=double
 "indent
 set bs=2
