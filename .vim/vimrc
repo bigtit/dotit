@@ -1,6 +1,7 @@
 set ex
 set secure
-colo desert
+colo gruvbox
+set bg=dark
 "patch for theme desert
 au ColorScheme desert hi CursorLine ctermfg=NONE ctermbg=black cterm=NONE
 au ColorScheme desert hi CursorColumn ctermfg=NONE ctermbg=black cterm=NONE
@@ -101,18 +102,18 @@ fu! s:mkgd()
   exe 'norm! Go#endif /* __' . gd . '__ */'
   norm! ko
 endf
-au BufNewFile *.{h,hh,hpp} call <sid>mkgd()
+au BufNewFile *.{h,hh,hpp} call s:mkgd()
 au BufRead,BufNewFile *.cpp,*,cc,*.c,*.h,*.hh,*.hpp,*.py,*.php,*.rb,*.js,*.node,*.sh,*.vim,*.css 2match Underlined /.\%81v/
 "trailing whitespace
 fu! s:rmtw()
   if &ft != 'diff'
-    let x = col('.')
-    let y = line('.')
+    let x = line('.')
+    let y = col('.')
     sil! %s/\s\+$//e
-    call cursor(y,x)
+    call cursor(x,y)
   endif
 endf
-au BufWritePre * call <sid>rmtw()
+au BufWritePre * call s:rmtw()
 "root
 if has('unix')
   cno w!! w !sudo tee > /dev/null %
@@ -124,4 +125,3 @@ endif
 "Plug 'octol/vim-cpp-enhanced-highlight'
 "Plug 'skywind3000/asyncrun.vim'
 "call plug#end()
-"#endif /* VIMRC */
