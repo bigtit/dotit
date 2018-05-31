@@ -1,4 +1,4 @@
-colo desert
+colo monokai-chris
 set nocp
 set ff=unix
 set enc=utf-8
@@ -46,10 +46,17 @@ syn on
 set list lcs=tab:..,eol:$
 filetype plugin indent on
 au BufRead,BufNewFile *.cpp,*,cc,*.c,*.h,*.hh,*.hpp,*.py,*.php,*.rb,*.js,*.node,*.sh,*.vim,*.css 2match Underlined /.\%81v/
-if has("gui_running")
+if has('gui_running')
   set lines=35 columns=120
-  "set guioptions-=m
-  set guioptions-=T
+  set go-=m
+  set go-=T
+  if has('gui_win32')
+    set gfn=Consolas:h11:cANSI
+  elseif has('gui_macvim')
+    set gfn=Menlo\ Regular:h14
+  elseif has('gui_gtk2') || has('gui_gtk3')
+    set gfn=Inconsolata\ 12
+  endif
 endif
 
 "pair
@@ -59,11 +66,11 @@ endif
 :ino } <c-r>=ClosePair('}')<cr>
 :ino [ []<esc>i
 :ino ] <c-r>=ClosePair(']')<cr>
-:ino " ""<esc>i
+:ino ' ''<esc>i
 :ino ' ''<esc>i
 fu! ClosePair(char)
   if getline('.')[col('.') - 1] == a:char
-    return "\<Right>"
+    return '\<Right>'
   else
     return a:char
   endif
@@ -71,13 +78,13 @@ endf
 "auto complete
 "insert mode only
 "tags
-ino <c-]> <c-X><c-]>
+ino <c-]> <c-x><c-]>
 "filename
-ino <c-f> <c-X><c-f>
+ino <c-f> <c-x><c-f>
 "macro
-ino <c-d> <c-X><c-d>
+ino <c-d> <c-x><c-d>
 "header file
-ino <c-i> <c-X><c-i>
+ino <c-i> <c-x><c-i>
 
 "esc
 ino jk <esc>
@@ -87,10 +94,10 @@ vn <esc> <nop>
 
 "header macro c/cpp
 fu! s:insert_gates()
-  let gatename = substitute(toupper(expand("%:t")), "\\.", "_", "g")
-  exe "norm! i#ifndef " . gatename
-  exe "norm! o#define " . gatename . " "
-  exe "norm! Go#endif /* " . gatename . " */"
+  let gatename = substitute(toupper(expand('%:t')), '\\.', '_', 'g')
+  exe 'norm! i#ifndef ' . gatename
+  exe 'norm! o#define ' . gatename . ' '
+  exe 'norm! Go#endif /* ' . gatename . ' */'
   normal! kk
 endf
 au BufNewFile *.{h,hh,hpp} call <SID>insert_gates()
