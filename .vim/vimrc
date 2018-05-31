@@ -78,7 +78,7 @@ endf
 fu! CloseQ(c)
   let line = getline('.')
   let col = col('.')
-  return line[col-1]=='\\' ? a:c : (line[col-1]==a:c ? "\<right>" : a:c.a:c."\<esc>i")
+  return line[col-2]=='\\' ? a:c : (line[col-1]==a:c ? "\<right>" : a:c.a:c."\<esc>i")
 endf
 ino ( ()<esc>i
 ino { {}<esc>i
@@ -93,7 +93,7 @@ ino jk <esc>
 ino <esc> <nop>
 "highlight off
 nn <esc><esc> <esc>:nohl<cr><esc>
-"header macro c/cpp
+"header guards
 fu! s:insgt()
   let gtn = substitute(toupper(expand('%:t')), "\\.", "_", "g")
   exe 'norm! i#ifndef __' . gtn . '__'
