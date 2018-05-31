@@ -50,9 +50,12 @@ set hi=50
 set mouse=a
 syn on
 set list lcs=tab:..,eol:$
-"cmd complete
+"cmd completion
 set wim=list:longest
 set wmnu
+"ins completion, c-i = tab
+set cot=longest,menu
+ino <c-i> <c-x><c-i>
 "
 filetype plugin indent on
 "gui
@@ -69,21 +72,22 @@ if has('gui_running')
   endif
 endif
 "pair
-ino ( ()<esc>i
-ino ) <c-r>=ClosePair(')')<cr>
-ino { {}<esc>i
-ino } <c-r>=ClosePair('}')<cr>
-ino [ []<esc>i
-ino ] <c-r>=ClosePair(']')<cr>
-ino ' ''<esc>i
-ino " ""<esc>i
-fu! ClosePair(char)
-  if getline('.')[col('.')-1] == a:char
-    return '\<right>'
-  else
-    return a:char
-  endif
+fu! CloseP(c)
+  return getline('.')[col('.')-1]==a:c? "\<right>" : a:c
 endf
+fu! CloseQ(c)
+  let line = getline('.')
+  let col = col('.')
+  return line[col-1]=='\\' ? a:c : (line[col-1]==a:c ? "\<right>" : a:c.a:c."\<esc>i")
+endf
+ino ( ()<esc>i
+ino { {}<esc>i
+ino [ []<esc>i
+ino ) <c-r>=CloseP(')')<cr>
+ino } <c-r>=CloseP('}')<cr>
+ino ] <c-r>=CloseP(']')<cr>
+ino ' <c-r>=CloseQ("'")<cr>
+ino " <c-r>=CloseQ('"')<cr>
 "esc
 ino jk <esc>
 ino <esc> <nop>
@@ -91,21 +95,21 @@ ino <esc> <nop>
 nn <esc><esc> <esc>:nohl<cr><esc>
 "header macro c/cpp
 fu! s:insgt()
-  let gtn = substitute(toupper(expand('%:t')), '\\.', '_', 'g')
-  exe 'norm! i#ifndef ' . gtn
-  exe 'norm! o#define ' . gtn . ' '
-  exe 'norm! Go#endif /* ' . gtn . ' */'
-  norm! k
+  let gtn = substitute(toupper(expand('%:t')), "\\.", "_", "g")
+  exe 'norm! i#ifndef __' . gtn . '__'
+  exe 'norm! o#define __' . gtn . '__'
+  exe 'norm! Go#endif /* __' . gtn . '__ */'
+  norm! ko
 endf
 au BufNewFile *.{h,hh,hpp} call <SID>insgt()
 au BufRead,BufNewFile *.cpp,*,cc,*.c,*.h,*.hh,*.hpp,*.py,*.php,*.rb,*.js,*.node,*.sh,*.vim,*.css 2match Underlined /.\%81v/
 "trailing whitespace
 fu! Rmtw()
   if &ft != 'diff'
-    let b:x = col('.')
-    let b:y = line('.')
+    let l:x = col('.')
+    let l:y = line('.')
     sil! %s/\s\+$//e
-    call cursor(b:y,b:x)
+    call cursor(l:y,l:x)
   endif
 endf
 au BufWritePre * call Rmtw()
