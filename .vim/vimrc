@@ -67,7 +67,7 @@ endif
 :ino [ []<esc>i
 :ino ] <c-r>=ClosePair(']')<cr>
 :ino ' ''<esc>i
-:ino ' ''<esc>i
+:ino " ""<esc>i
 fu! ClosePair(char)
   if getline('.')[col('.') - 1] == a:char
     return '\<Right>'
@@ -98,7 +98,6 @@ au BufNewFile *.{h,hh,hpp} call <SID>insert_gates()
 
 "highlight search off
 nn <esc><esc> <esc>:nohl<cr><esc>
-vn <esc><esc> <esc>:nohl<cr><esc>
 
 "root using w!! command
 cm w!! w !sudo tee > /dev/null %
