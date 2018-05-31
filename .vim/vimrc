@@ -1,4 +1,4 @@
-colo monokai-chris
+colo desert
 set nocp
 set ff=unix
 set enc=utf-8
@@ -76,21 +76,15 @@ fu! ClosePair(char)
   endif
 endf
 "auto complete
-"insert mode only
 "tags
 ino <c-]> <c-x><c-]>
-"filename
 ino <c-f> <c-x><c-f>
-"macro
 ino <c-d> <c-x><c-d>
-"header file
 ino <c-i> <c-x><c-i>
 
 "esc
 ino jk <esc>
 ino <esc> <nop>
-vn jk <esc>
-vn <esc> <nop>
 
 "header macro c/cpp
 fu! s:insert_gates()
@@ -98,7 +92,7 @@ fu! s:insert_gates()
   exe 'norm! i#ifndef ' . gatename
   exe 'norm! o#define ' . gatename . ' '
   exe 'norm! Go#endif /* ' . gatename . ' */'
-  normal! kk
+  norm! k
 endf
 au BufNewFile *.{h,hh,hpp} call <SID>insert_gates()
 
