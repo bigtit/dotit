@@ -1,4 +1,10 @@
+set ex
+set secure
 colo desert
+"patch for theme desert
+au ColorScheme desert hi CursorLine ctermfg=NONE ctermbg=black cterm=NONE
+au ColorScheme desert hi CursorColumn ctermfg=NONE ctermbg=black cterm=NONE
+"common
 set nocp
 set ff=unix
 set enc=utf-8
@@ -11,6 +17,10 @@ set si
 set sw=2
 set ts=2
 set et
+"wrap
+"set wrap
+set sbr=>>\
+"let &sbr= '++++
 "look
 set nu
 set ru
@@ -25,18 +35,14 @@ set scs
 set fen
 set fdm=syntax
 set fdl=100
-
 "status bar
 set ls=2
 set stl=%<%F%m\ \[%{&ff}:%{&fenc}:%Y%{&bomb?'\:BOM':''}]\ \ \[%{strftime('%Y%e%d\ %a\ %H:%M')}\]\ %=\ Row:%l\/%L\(%p%%)\ Col:%c%V\ %P
-
+"scroll
 set so=3
 set sm
 set cul
 set cuc
-"patch for theme desert
-au ColorScheme desert hi CursorLine ctermfg=NONE ctermbg=black cterm=NONE
-au ColorScheme desert hi CursorColumn ctermfg=NONE ctermbg=black cterm=NONE
 "bak
 set wb
 set nobk
@@ -44,8 +50,12 @@ set hi=50
 set mouse=a
 syn on
 set list lcs=tab:..,eol:$
+"cmd complete
+set wim=list:longest
+set wmnu
+"
 filetype plugin indent on
-au BufRead,BufNewFile *.cpp,*,cc,*.c,*.h,*.hh,*.hpp,*.py,*.php,*.rb,*.js,*.node,*.sh,*.vim,*.css 2match Underlined /.\%81v/
+"gui
 if has('gui_running')
   set lines=35 columns=120
   set go-=m
@@ -58,49 +68,51 @@ if has('gui_running')
     set gfn=Inconsolata\ 12
   endif
 endif
-
 "pair
-:ino ( ()<esc>i
-:ino ) <c-r>=ClosePair(')')<cr>
-:ino { {}<esc>i
-:ino } <c-r>=ClosePair('}')<cr>
-:ino [ []<esc>i
-:ino ] <c-r>=ClosePair(']')<cr>
-:ino ' ''<esc>i
-:ino " ""<esc>i
+ino ( ()<esc>i
+ino ) <c-r>=ClosePair(')')<cr>
+ino { {}<esc>i
+ino } <c-r>=ClosePair('}')<cr>
+ino [ []<esc>i
+ino ] <c-r>=ClosePair(']')<cr>
+ino ' ''<esc>i
+ino " ""<esc>i
 fu! ClosePair(char)
-  if getline('.')[col('.') - 1] == a:char
-    return '\<Right>'
+  if getline('.')[col('.')-1] == a:char
+    return '\<right>'
   else
     return a:char
   endif
 endf
-"auto complete
-"tags
-ino <c-]> <c-x><c-]>
-ino <c-f> <c-x><c-f>
-ino <c-d> <c-x><c-d>
-ino <c-i> <c-x><c-i>
-
 "esc
 ino jk <esc>
 ino <esc> <nop>
-
+"highlight off
+nn <esc><esc> <esc>:nohl<cr><esc>
 "header macro c/cpp
-fu! s:insert_gates()
-  let gatename = substitute(toupper(expand('%:t')), '\\.', '_', 'g')
-  exe 'norm! i#ifndef ' . gatename
-  exe 'norm! o#define ' . gatename . ' '
-  exe 'norm! Go#endif /* ' . gatename . ' */'
+fu! s:insgt()
+  let gtn = substitute(toupper(expand('%:t')), '\\.', '_', 'g')
+  exe 'norm! i#ifndef ' . gtn
+  exe 'norm! o#define ' . gtn . ' '
+  exe 'norm! Go#endif /* ' . gtn . ' */'
   norm! k
 endf
-au BufNewFile *.{h,hh,hpp} call <SID>insert_gates()
-
-"highlight search off
-nn <esc><esc> <esc>:nohl<cr><esc>
-
-"root using w!! command
-cm w!! w !sudo tee > /dev/null %
+au BufNewFile *.{h,hh,hpp} call <SID>insgt()
+au BufRead,BufNewFile *.cpp,*,cc,*.c,*.h,*.hh,*.hpp,*.py,*.php,*.rb,*.js,*.node,*.sh,*.vim,*.css 2match Underlined /.\%81v/
+"trailing whitespace
+fu! Rmtw()
+  if &ft != 'diff'
+    let b:x = col('.')
+    let b:y = line('.')
+    sil! %s/\s\+$//e
+    call cursor(b:y,b:x)
+  endif
+endf
+au BufWritePre * call Rmtw()
+"root
+if has('unix')
+  cno w!! w !sudo tee > /dev/null %
+endif
 
 "vim-plug instead of vundle
 "call plug#begin('~/.vim/plugged')
@@ -108,3 +120,4 @@ cm w!! w !sudo tee > /dev/null %
 "Plug 'octol/vim-cpp-enhanced-highlight'
 "Plug 'skywind3000/asyncrun.vim'
 "call plug#end()
+"#endif /* VIMRC */
