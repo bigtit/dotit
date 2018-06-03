@@ -18,8 +18,10 @@ set ambw=double
 set bs=2
 set cin
 set si
+set sta
 set sw=2
-set ts=2
+set sts=2
+"set ts=2
 set et
 "wrap
 "set wrap
@@ -59,7 +61,7 @@ set wim=list:longest
 set wmnu
 "ins completion, c-i = tab
 set cot=longest,menu
-ino <c-i> <c-x><c-i>
+"ino <c-i> <c-x><c-i>
 "
 filetype plugin indent on
 "gui
