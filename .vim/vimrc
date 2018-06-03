@@ -43,7 +43,7 @@ set fdm=syntax
 set fdl=100
 "status bar
 set ls=2
-set stl=%<%F%m\ \[%{&ff}:%{&fenc}:%Y%{&bomb?'\:BOM':''}]\ \ \[%{strftime('%Y%e%d\ %a\ %H:%M')}\]\ %=\ Row:%l\/%L\(%p%%)\ Col:%c%V\ %P
+set stl=%<%F%m\ \[%{&ff}:%{&fenc}:%Y%{&bomb?'\:BOM':''}]\ \ \[%{strftime('%Y%m%d\ %a\ %H:%M')}\]\ %=\ Row:%l\/%L\(%p%%)\ Col:%c%V\ %P
 "scroll
 set so=3
 set sm
