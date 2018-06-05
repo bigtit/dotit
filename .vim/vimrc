@@ -30,6 +30,7 @@ set sbr=>>\
 "look
 set nu
 set ru
+set sc
 "search
 set is
 set hls
@@ -99,6 +100,10 @@ ino jk <esc>
 ino <esc> <nop>
 "highlight off
 nn <esc><esc> <esc>:nohl<cr><esc>
+"leader
+"nn <space> <nop>
+"let mapleader=' '
+"
 "header guards
 fu! s:mkgd()
   let gd = substitute(toupper(expand('%:t')), "\\.", "_", "g")
@@ -128,5 +133,8 @@ endif
 "call plug#begin('~/.vim/plugged')
 "Plug 'dyng/ctrlsf.vim'
 "Plug 'octol/vim-cpp-enhanced-highlight'
-"Plug 'skywind3000/asyncrun.vim'
 "call plug#end()
+"
+"ctrlsf
+"let g:ctrlsf_context='-C 2'
+"nmap <leader><leader> <plug>CtrlSFCCwordPath<cr>
