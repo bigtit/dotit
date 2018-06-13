@@ -126,7 +126,7 @@ fu! s:rmtw()
 endf
 au BufWritePre * call s:rmtw()
 "root
-if has('unix')
+if has('unix') && !has('win32unix')
   cno w!! w !sudo tee > /dev/null %
 endif
 
