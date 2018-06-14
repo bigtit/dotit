@@ -23,6 +23,7 @@ set sw=2
 set sts=2
 "set ts=2
 set et
+set cino=g0,:0,N-s,(0
 "wrap
 "set wrap
 set sbr=>>\
