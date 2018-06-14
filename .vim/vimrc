@@ -32,6 +32,9 @@ set sbr=>>\
 set nu
 set ru
 set sc
+set ve=block
+set shm=atI
+set lz
 "search
 set is
 set hls
@@ -39,7 +42,8 @@ set hid
 set acd
 set ic
 set scs
-"fold
+"folding
+set mps+=<:>
 set fen
 set fdm=syntax
 set fdl=100
