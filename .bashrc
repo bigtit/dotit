@@ -19,14 +19,14 @@ function git_branch {
   git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'
 }
 function git_dirty {
-  ([[ $(git status 2> /dev/null) = *"nothing to commit"* ]] && echo f) || echo t
+  ([[ $(git status 2> /dev/null) == *"nothing to commit"* ]] && echo f) || echo t
 }
 function git_prompt {
   #[ -d .git ] && echo -e "($(git_branch)$(git_dirty))"
   if [ -d .git ]; then
     local git_color="\e[1;32m"
     local git_mark="✔"
-    [[ $(git_dirty) = t ]] && git_color="\e[1;31m" && git_mark="✘"
+    [[ $(git_dirty) == t ]] && git_color="\e[1;31m" && git_mark="✘"
     echo -e "${git_color}($(git_branch)${git_mark})"
   fi
 }
