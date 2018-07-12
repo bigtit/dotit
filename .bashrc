@@ -44,5 +44,8 @@ alias ...='cd ../..'
 export LC_COLLATE=C
 export TERM=xterm-256color
 
-bind "TAB:menu-complete"
-bind "set show-all-if-ambiguous on"
+bind 'TAB:menu-complete'
+bind 'set show-all-if-ambiguous on'
+bind '"\e[B":history-search-forward'
+bind '"\e[A":history-search-backward'
+bind 'set completion-ignore-case on'
