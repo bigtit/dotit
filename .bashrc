@@ -1,5 +1,6 @@
 git config --global bash.showDirtyState false
-if [[ $(uname) != "Linux" ]]; then
+pname=$(uname)
+if [[ ${pname} != "Linux" && ${pname} != "Darwin" && ${pname} != *"BSD" ]]; then
   git config --global core.preloadindex true
   git config --global core.fscache true
   git config --global gc.auto 256
@@ -34,7 +35,11 @@ function git_prompt {
 }
 export PS1="${PURPLE}[\D{%m/%d} \A] ${BLUE}\u${NO_COLOR}@${BOLD_CYAN}\h${WHITE} ${GREEN}\w \$(git_prompt)${NO_COLOR} "$'\n> '
 
-alias ls='ls --color=auto'
+if [[ ${pname} != "Darwin" && ${pname} != *"BSD" ]]; then
+  alias ls='ls --color=auto'
+else
+  alias ls='ls -G'
+fi
 alias la='ls -a'
 alias ll='ls -l'
 alias l='ls -la'
