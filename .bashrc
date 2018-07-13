@@ -38,8 +38,8 @@ function git_prompt {
           {
             local untracked=0 local unstaged=0 local staged=0
             untracked=$(git ls-files --other --exclude-standard|wc -l);
-            unstaged=$(git diff --cached|egrep "^diff --git"|wc -l);
-            staged=$(git diff|egrep "^diff --git"|wc -l);
+            staged=$(git diff --cached|egrep "^diff --git"|wc -l);
+            unstaged=$(git diff|egrep "^diff --git"|wc -l);
             changes="\e[2;35m(${untracked}/${unstaged}/${staged})";
           }
       }
