@@ -1,9 +1,11 @@
 git config --global bash.showDirtyState false
 pname=$(uname)
+git_adv="true"
 if [[ ${pname} != "Linux" && ${pname} != "Darwin" && ${pname} != *"BSD" ]]; then
   git config --global core.preloadindex true
   git config --global core.fscache true
   git config --global gc.auto 256
+  git_adv="" # disable advanced git status on windows
 fi
 ##
 # Shell colors
@@ -27,10 +29,21 @@ function git_branch {
 function git_prompt {
   #[ -d .git ] && echo -e "($(git_branch)$(git_dirty))"
   if [[ -d .git ]]; then
-    local git_color="\e[1;32m"
-    local git_mark="✔"
-    [[ $(git status 2> /dev/null) != *"nothing to commit"* ]] && { git_color="\e[1;31m"; git_mark="✘"; }
-    echo -e "${git_color}($(git_branch)${git_mark})"
+    local git_color="\e[2;32m" local git_mark=""
+    local changes=""
+    [[ $(git status 2> /dev/null) != *"nothing to commit"* ]] && \
+      {
+        git_color="\e[2;31m"; git_mark="*";
+        [[ git_adv ]] && \
+          {
+            local untracked=0 local unstaged=0 local staged=0
+            untracked=$(git ls-files --other --exclude-standard|wc -l);
+            unstaged=$(git diff --cached|egrep "^diff --git"|wc -l);
+            staged=$(git diff|egrep "^diff --git"|wc -l);
+            changes="\e[2;35m(${untracked}/${unstaged}/${staged})";
+          }
+      }
+    echo -e "${git_color}($(git_branch)${git_mark}) ${changes}"
   fi
 }
 export PS1="${PURPLE}[\D{%m/%d} \A] ${BLUE}\u${NO_COLOR}@${BOLD_CYAN}\h${WHITE} ${GREEN}\w \$(git_prompt)${NO_COLOR} "$'\n> '
