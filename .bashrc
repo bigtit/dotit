@@ -34,7 +34,7 @@ function git_prompt {
     [[ $(git status 2> /dev/null) != *"nothing to commit"* ]] && \
       {
         git_color="\e[2;31m"; git_mark="*";
-        [[ git_adv ]] && \
+        [[ ${git_adv} ]] && \
           {
             local untracked=0 local unstaged=0 local staged=0
             untracked=$(git ls-files --other --exclude-standard|wc -l);
