@@ -26,10 +26,10 @@ function git_branch {
 }
 function git_prompt {
   #[ -d .git ] && echo -e "($(git_branch)$(git_dirty))"
-  if [ -d .git ]; then
+  if [[ -d .git ]]; then
     local git_color="\e[1;32m"
     local git_mark="✔"
-    [[ $(git status 2> /dev/null) != *"nothing to commit"* ]] && git_color="\e[1;31m" && git_mark="✘"
+    [[ $(git status 2> /dev/null) != *"nothing to commit"* ]] && { git_color="\e[1;31m"; git_mark="✘"; }
     echo -e "${git_color}($(git_branch)${git_mark})"
   fi
 }
