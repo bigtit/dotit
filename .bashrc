@@ -28,7 +28,7 @@ function git_branch {
 }
 function git_prompt {
   #[ -d .git ] && echo -e "($(git_branch)$(git_dirty))"
-  if [[ -d .git ]]; then
+  if [[ -d .git ]] || git rev-parse --git-dir > /dev/null 2>&1; then
     local git_color="\e[2;32m" local git_mark=""
     local changes=""
     [[ $(git status 2> /dev/null) != *"nothing to commit"* ]] && \
