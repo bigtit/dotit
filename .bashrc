@@ -72,3 +72,6 @@ bind 'set show-all-if-ambiguous on'
 bind '"\e[B":history-search-forward'
 bind '"\e[A":history-search-backward'
 bind 'set completion-ignore-case on'
+
+# completion
+[[ -f /etc/bash_completion ]] && ! shopt -oq posix && source /etc/bash_completion
