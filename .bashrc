@@ -49,7 +49,7 @@ function git_prompt {
 }
 USER_COLOR=${BLUE}
 [[ ${EUID} -eq 0 ]] && USER_COLOR=${BLOOD}
-export PS1="${PURPLE}[\D{%m/%d} \A] ${USER_COLOR}\u${NO_COLOR}@${BOLD_CYAN}\h${WHITE} ${GREEN}\w \$(git_prompt)${NO_COLOR} "$'\n> '
+export PS1="${PURPLE}[\A] ${USER_COLOR}\u${NO_COLOR}@${BOLD_CYAN}\h${WHITE} ${GREEN}\w \$(git_prompt)${NO_COLOR} "$'\n> '
 
 if [[ ${pname} != "Darwin" && ${pname} != *"BSD" ]]; then
   alias ls='ls --color=auto'
