@@ -18,6 +18,7 @@ BLUE="\[\e[0;34m\]"   BOLD_BLUE="\[\e[1;34m\]"   UNDER_BLUE="\[\e[4;34m\]"
 PURPLE="\[\e[0;35m\]" BOLD_PURPLE="\[\e[1;35m\]" UNDER_PURPLE="\[\e[4;35m\]"
 CYAN="\[\e[0;36m\]"   BOLD_CYAN="\[\e[1;36m\]"   UNDER_CYAN="\[\e[4;36m\]"
 WHITE="\[\e[0;37m\]"  BOLD_WHITE="\[\e[1;37m\]"  UNDER_WHITE="\[\e[4;37m\]"
+BLOOD="\[\e[1;91m\]"
 NO_COLOR="\[\e[0m\]"
 
 ##
@@ -46,7 +47,9 @@ function git_prompt {
     echo -e "${git_color}($(git_branch)${git_mark}) ${changes}"
   fi
 }
-export PS1="${PURPLE}[\D{%m/%d} \A] ${BLUE}\u${NO_COLOR}@${BOLD_CYAN}\h${WHITE} ${GREEN}\w \$(git_prompt)${NO_COLOR} "$'\n> '
+USER_COLOR=${BLUE}
+[[ ${EUID} -eq 0 ]] && USER_COLOR=${BLOOD}
+export PS1="${PURPLE}[\D{%m/%d} \A] ${USER_COLOR}\u${NO_COLOR}@${BOLD_CYAN}\h${WHITE} ${GREEN}\w \$(git_prompt)${NO_COLOR} "$'\n> '
 
 if [[ ${pname} != "Darwin" && ${pname} != *"BSD" ]]; then
   alias ls='ls --color=auto'
