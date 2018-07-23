@@ -1,6 +1,6 @@
 set ex
 set secure
-colo gruvbox
+colo desert
 set bg=dark
 "patch for theme desert
 au ColorScheme desert hi CursorLine ctermfg=NONE ctermbg=black cterm=NONE
