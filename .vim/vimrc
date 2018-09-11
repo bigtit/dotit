@@ -1,10 +1,8 @@
 set ex
 set secure
-colo desert
+colo gruvbox
 set bg=dark
-"patch for theme desert
-au ColorScheme desert hi CursorLine ctermfg=NONE ctermbg=black cterm=NONE
-au ColorScheme desert hi CursorColumn ctermfg=NONE ctermbg=black cterm=NONE
+hi Normal guibg=NONE ctermbg=NONE
 "common
 set nocp
 set ff=unix
