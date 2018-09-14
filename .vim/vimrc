@@ -2,7 +2,7 @@ set ex
 set secure
 colo gruvbox
 set bg=dark
-hi Normal guibg=NONE ctermbg=NONE
+
 "common
 set nocp
 set ff=unix
@@ -132,6 +132,9 @@ au BufWritePre * call s:rmtw()
 if has('unix') && !has('win32unix')
   cno w!! w !sudo tee > /dev/null %
 endif
+
+hi NonText guibg=NONE ctermbg=NONE
+hi Normal guibg=NONE ctermbg=NONE
 
 "vim-plug instead of vundle
 "call plug#begin('~/.vim/plugged')
