@@ -70,7 +70,7 @@ set cot=longest,menu
 filetype plugin indent on
 "gui
 if has('gui_running')
-  set gcr+=a:blinkon0
+  set gcr+=a:blinkon0-iCursor,i:ver10-iCursor
   set lines=35 columns=120
   set go-=m
   set go-=T
