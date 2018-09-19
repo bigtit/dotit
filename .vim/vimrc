@@ -133,8 +133,8 @@ if has('unix') && !has('win32unix')
   cno w!! w !sudo tee > /dev/null %
 endif
 
-hi NonText guibg=NONE ctermbg=NONE
-hi Normal guibg=NONE ctermbg=NONE
+hi NonText ctermbg=NONE
+hi Normal ctermbg=NONE
 
 "vim-plug instead of vundle
 "call plug#begin('~/.vim/plugged')
