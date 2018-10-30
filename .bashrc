@@ -1,12 +1,5 @@
-git config --global bash.showDirtyState false
 pname=$(uname)
-git_adv="true"
-if [[ ${pname} != "Linux" && ${pname} != "Darwin" && ${pname} != *"BSD" ]]; then
-  git config --global core.preloadindex true
-  git config --global core.fscache true
-  git config --global gc.auto 256
-  git_adv="" # disable advanced git status on windows
-fi
+# git functions too slow
 ##
 # Shell colors
 ##
@@ -21,35 +14,9 @@ WHITE="\[\e[0;37m\]"  BOLD_WHITE="\[\e[1;37m\]"  UNDER_WHITE="\[\e[4;37m\]"
 BLOOD="\[\e[1;91m\]"
 NO_COLOR="\[\e[0m\]"
 
-##
-# Git shell prompt
-##
-function git_branch {
-  git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'
-}
-function git_prompt {
-  #[ -d .git ] && echo -e "($(git_branch)$(git_dirty))"
-  if [[ -d .git ]] || git rev-parse --git-dir > /dev/null 2>&1; then
-    local git_color="\e[2;32m" local git_mark=""
-    local changes=""
-    [[ $(git status 2> /dev/null) != *"nothing to commit"* ]] && \
-      {
-        git_color="\e[2;31m"; git_mark="*";
-        [[ ${git_adv} ]] && \
-          {
-            local untracked=0 local unstaged=0 local staged=0
-            untracked=$(git ls-files --other --exclude-standard|wc -l);
-            staged=$(git diff --cached|egrep "^diff --git"|wc -l);
-            unstaged=$(git diff|egrep "^diff --git"|wc -l);
-            changes="\e[2;35m(${untracked}/${unstaged}/${staged})";
-          }
-      }
-    echo -e "${git_color}($(git_branch)${git_mark}) ${changes}"
-  fi
-}
-USER_COLOR=${BLUE}
+USER_COLOR=${YELLOW}
 [[ ${EUID} -eq 0 ]] && USER_COLOR=${BLOOD}
-export PS1="${PURPLE}[\A] ${USER_COLOR}\u${NO_COLOR}@${BOLD_CYAN}\h${WHITE} ${GREEN}\w \$(git_prompt)${NO_COLOR} "$'\n> '
+export PS1="${PURPLE}[\A] ${USER_COLOR}\u${NO_COLOR}@${BOLD_CYAN}\h${WHITE} ${GREEN}\w ${NO_COLOR} "$'\n> '
 
 if [[ ${pname} != "Darwin" && ${pname} != *"BSD" ]]; then
   alias ls='ls --color=auto'
