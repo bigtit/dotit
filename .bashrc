@@ -15,8 +15,9 @@ BLOOD="\[\e[1;91m\]"
 NO_COLOR="\[\e[0m\]"
 
 USER_COLOR=${YELLOW}
+PROMPT_DIRTRIM=3
 [[ ${EUID} -eq 0 ]] && USER_COLOR=${BLOOD}
-export PS1="${PURPLE}[\A]${USER_COLOR}\u${NO_COLOR}@${BOLD_CYAN}\h${WHITE}:${GREEN}\w${BOLD_BLUE}"'$ '${NO_COLOR}
+export PS1="${USER_COLOR}\u${NO_COLOR}@${BOLD_CYAN}\h${WHITE}:${GREEN}\w${BOLD_BLUE}"'$ '${NO_COLOR}
 
 if [[ ${pname} != "Darwin" && ${pname} != *"BSD" ]]; then
   alias ls='ls --color=auto'
