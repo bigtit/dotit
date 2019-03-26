@@ -29,11 +29,13 @@ alias ll='ls -l'
 alias l='ls -la'
 alias vi=vim
 alias sudo='sudo -E'
-alias ..='cd ..'
-alias ...='cd ../..'
 
 export LC_COLLATE=C
 export TERM=xterm-256color
+
+# history
+HISTCONTROL=ignoredups:erasedups
+shopt -s histappend
 
 #bind 'TAB:menu-complete'
 if [[ -t 1 ]]; then
