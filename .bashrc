@@ -46,4 +46,11 @@ if [[ -t 1 ]]; then
 fi
 
 # completion
-[[ -f /etc/bash_completion ]] && ! shopt -oq posix && source /etc/bash_completion
+if ! shopt -oq posix; then
+  if [[ -f /etc/bash_completion ]]; then
+    . /etc/bash_completion
+  elif [[ -f /usr/share/bash-completion/bash_completion ]]; then
+    . /usr/share/bash-completion/bash_completion
+  fi
+fi
+  
