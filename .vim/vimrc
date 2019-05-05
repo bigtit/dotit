@@ -111,9 +111,9 @@ nn <esc><esc> <esc>:nohl<cr><esc>
 "header guards
 fu! s:mkgd()
   let gd = substitute(toupper(expand('%:t')), "\\.", "_", "g")
-  exe 'norm! i#ifndef gd . '_'
-  exe 'norm! o#define gd . '_'
-  exe 'norm! Go#endif /* gd . '_ */'
+  exe 'norm! i#ifndef ' . gd . '_'
+  exe 'norm! o#define ' . gd . '_'
+  exe 'norm! Go#endif /* ' . gd . '_ */'
   norm! ko
 endf
 au BufNewFile *.{h,hh,hpp} call s:mkgd()
