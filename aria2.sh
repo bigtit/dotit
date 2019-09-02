@@ -3,14 +3,14 @@ mkdir -p ~/.config/aria2
 touch ~/.config/aria2/aria2.conf
 touch ~/.config/aria2/session.lock
 
-cat ./aria2.conf <<EOL
+cat > ./aria2.conf <<EOL
 dir=/home/$(whoami)/Downloads/
 rpc-secret=secret
 max-overall-download-limit=7M
 EOL
 mv ./aria2.conf ~/.config/aria2/
 
-cat ./aria2.service <<EOL
+cat > ./aria2.service <<EOL
 [Unit]
 Description=Aria2 Service
 After=network.target
