@@ -101,6 +101,8 @@ ino ' <c-r>=<sid>closeq("'")<cr>
 ino " <c-r>=<sid>closeq('"')<cr>
 "esc
 ino jk <esc>
+" Fix paste bug triggered by the above inoremaps
+set t_BE=
 ino <esc> <nop>
 "highlight off
 nn <esc><esc> <esc>:nohl<cr><esc>
