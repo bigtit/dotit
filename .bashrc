@@ -51,7 +51,7 @@ if [[ -t 1 ]]; then
   bind '"\e[B":history-search-forward'
   bind '"\e[A":history-search-backward'
   bind 'set completion-ignore-case on'
-fi
+  fi
 
 # completion
 if ! shopt -oq posix; then
@@ -61,3 +61,4 @@ if ! shopt -oq posix; then
     . /usr/share/bash-completion/bash_completion
   fi
 fi
+
