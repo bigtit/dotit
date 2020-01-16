@@ -46,7 +46,7 @@ HISTCONTROL=ignoredups:erasedups
 shopt -s histappend
 
 #bind 'TAB:menu-complete'
-if [[ -t 1 ]]; then
+if [[ $iatest > 0 ]]; then
   bind 'set show-all-if-ambiguous on'
   bind '"\e[B":history-search-forward'
   bind '"\e[A":history-search-backward'
