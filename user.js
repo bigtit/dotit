@@ -5,3 +5,5 @@ user_pref("places.history.expiration.max_pages", 400);
 user_pref("services.sync.prefs.sync.places.history.expiration.max_pages", true);
 user_pref("services.sync.prefs.dangerously_allow_arbitrary", true);
 user_pref("browser.tabs.drawInTitlebar", true);
+user_pref("general.smoothScroll", false);
+user_pref("browser.urlbar.autoFill", false);
