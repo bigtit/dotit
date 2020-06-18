@@ -59,6 +59,7 @@ set nobk
 set hi=50
 set mouse=a
 syn on
+set smc=120
 set list lcs=tab:..,eol:$
 "cmd completion
 set wim=list:longest
@@ -146,7 +147,9 @@ let &t_EI = "\<esc>[2 q"
 "call plug#begin('~/.vim/plugged')
 "Plug 'dyng/ctrlsf.vim'
 "Plug 'octol/vim-cpp-enhanced-highlight'
+"Plug 'Valloric/YouCompleteMe'
 "call plug#end()
+"let g:ycm_global_ycm_extra_conf = "~/.vim/ycm_extra_conf.py"
 "
 "ctrlsf
 "let g:ctrlsf_context='-C 2'
