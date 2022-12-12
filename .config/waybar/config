@@ -1,0 +1,85 @@
+// fonts: material design desktop, jetbrain mono nerd font
+{
+  "position": "left",
+    "width": 56,
+    "modules-left": ["sway/workspaces", "sway/mode", "wlr/taskbar"],
+    "modules-center": [],
+    "modules-right": ["network", "pulseaudio", "tray", "clock", "custom/power"],
+    // Modules configuration
+    "sway/workspaces": {
+      "all-outputs": true,
+      "disable-scroll": true,
+      "format": "{icon}{name}",
+      "persistent_workspaces": {
+        "1": [],
+        "2": [],
+      },
+      "format-icons": {
+        "1:terminals": "", // Icon: terminal
+        "2:www": "龜", // Icon: firefox-browser
+        "3:editor": "", // Icon: code
+        "urgent": "",
+        "focused": ">",
+        //"focused": "",
+        //"default": ""
+        "default": " "
+      }
+    },
+    "wlr/taskbar": {
+      "icon-size": 32,
+      "format": "{icon}",
+      "tooltip-format": "{title}",
+      "on-click": "activate",
+      "on-click-middle": "close",
+      "icon-theme": "Tela"
+    },
+    "custom/power": {
+      "format": "⏻",
+      "on-click": "wlogout"
+    },
+    "clock": {
+      // "format": "🕑\n{:%H:%M}",
+      "format": "{:%H:%M}",
+      "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+      // "format-alt": "{:%Y-%m-%d}"
+    },
+    "battery": {
+      "states": {
+        "warning": 30,
+        "critical": 15
+      },
+      "format": "{icon} {capacity}%",
+      "format-charging": "󰂄 {capacity}%",
+      "format-plugged": "󰂄{capacity}%",
+      "format-alt": "{time} {icon}",
+      "format-full": "󱈑 {capacity}%",
+      "format-icons": ["󱊡", "󱊢", "󱊣"]
+    },
+    "network": {
+      "format-wifi": "  {essid}",
+      //"format-ethernet": "{ifname}: {ipaddr}/{cidr} ",
+      "format-ethernet": "🖧",
+      "format-linked": "🖧",
+      "format-disconnected": "󰤮 Disconnected",
+      "tooltip": true,
+      "tooltip-format": "{ifname}: {ipaddr}/{cidr}",
+      // "format-alt": "{ifname}: {ipaddr}/{cidr}"
+    },
+    "pulseaudio": {
+      "format": "{icon}",
+      "format-muted": "🔇",
+      "format-icons": {
+        "headphone": "🎧",
+        "hands-free": "",
+        "headset": "",
+        "phone": "🕽",
+        "portable": "🕽",
+        "car": "🏎",
+        "default": ["🔈", "🔉", "🔊"]
+      },
+      "tooltip": true,
+      "tooltip-format": "{volume}%",
+      "on-click-right": "mute",
+      "on-click": "pavucontrol"
+    }
+}
