@@ -220,6 +220,11 @@ bar {
 for_window [title="^Picture in picture$"] floating enable, sticky enable
 # save dialog
 for_window [title="^Save file$"] floating enable
+# virt-manager main window
+for_window [title="^Virtual Machine Manager$" app_id="^virt-manager$"] floating enable
+# pavucontrol
+for_window [app_id="^pavucontrol$"] floating enable
+for_window [app_id="^nm-connection-editor$"] floating enable
 
 #
 ### xwayland scaling, only valid for sway-hidpi-git

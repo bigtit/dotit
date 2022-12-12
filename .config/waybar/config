@@ -81,5 +81,10 @@
       "tooltip-format": "{volume}%",
       "on-click-right": "mute",
       "on-click": "pavucontrol"
+    },
+    "tray": {
+      "icon-size": 16,
+      "spacing": 10,
+      "show-passive-items": true
     }
 }
