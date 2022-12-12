@@ -39,7 +39,6 @@ alias vi=vim
 alias sudo='sudo -E'
 
 export LC_COLLATE=C
-export TERM=xterm-256color
 
 # history
 HISTCONTROL=ignoredups:erasedups
