@@ -17,8 +17,8 @@ set bs=2
 set cin
 set si
 set sta
-set sw=2
-set sts=2
+set sw=4
+set sts=4
 "set ts=2
 set et
 set cino=g0,:0,N-s,(0
