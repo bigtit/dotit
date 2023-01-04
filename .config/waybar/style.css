@@ -1,125 +1,304 @@
+
+/* =============================================================================
+ *
+ * Waybar configuration
+ *
+ * Configuration reference: https://github.com/Alexays/Waybar/wiki/Configuration
+ *
+ * =========================================================================== */
+
+/* import css definitions for current theme */
+
+/* -----------------------------------------------------------------------------
+ * Keyframes
+ * -------------------------------------------------------------------------- */
+
+@keyframes blink-warning {
+    70% {
+        color: @wm_icon_bg;
+    }
+
+    to {
+        color: @wm_icon_bg;
+        background-color: @warning_color;
+    }
+}
+
+@keyframes blink-critical {
+    70% {
+      color: @wm_icon_bg;
+    }
+
+    to {
+        color: @wm_icon_bg;
+        background-color: @error_color;
+    }
+}
+
+
+/* -----------------------------------------------------------------------------
+ * Base styles
+ * -------------------------------------------------------------------------- */
+
+/* Reset all styles */
 * {
-  border: none;
-  border-radius: 0;
-  font-family: monospace;
-  font-size: 16px;
-  min-height: 0;
+    border: none;
+    border-radius: 0;
+    min-height: 0;
+    margin: 0;
+    padding: 0;
+    font-family: "RobotoMono Nerd Font", "Roboto Mono", sans-serif;
 }
 
+/* The whole bar */
 window#waybar {
-  background: #3b4252;
-  background-color: rgba(0,0,0,0.4);
-  color: white;
+    background: @theme_bg_color;
+    color: @wm_icon_bg;
+    font-size: 14px;
 }
 
-#workspaces {
-  background-color: #4c566a;
-  margin-left: 5px;
-  margin-right: 5px;
-  border-radius: 5px;
-}
-#workspaces button {
-  padding: 5px 5px;
-  color: #eceff4;
-}
-
-#workspaces button.focused {
-  color: #2e3440;
-  background-color: #88c0d0;
-  border-radius: 5px;
-}
-
-#workspaces button:hover {
-  background-color: #5e81ac;
-  border-radius: 5px;
-}
-
-#taskbar {
-  background-color: #4c566a;
-  border-radius: 5px;
-  margin: 5px
-}
-#taskbar button {
-  border-radius: 5px;
-  padding: 0px;
-  padding-top: 3px;
-  padding-bottom: 3px;
+/* Each module */
+#custom-pacman,
+#custom-menu,
+#custom-help,
+#custom-scratchpad,
+#custom-github,
+#custom-clipboard,
+#custom-zeit,
+#custom-dnd,
+#bluetooth,
+#battery,
+#clock,
+#cpu,
+#memory,
+#mode,
+#network,
+#pulseaudio,
+#temperature,
+#idle_inhibitor,
+#backlight,
+#language,
+#custom-sunset,
+#custom-playerctl,
+#tray {
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
-#custom-date, #clock, #battery, #pulseaudio, #network, #tray {
-  background-color: #4c566a;
-  color: #bf616a;
-  padding: 10px 5px;
-  margin: 0px 0px;
+
+/* -----------------------------------------------------------------------------
+ * Module styles
+ * -------------------------------------------------------------------------- */
+
+#custom-scratchpad, #custom-menu, #workspaces button.focused, #clock  {
+    color: @theme_bg_color;
+    background-color: @theme_selected_bg_color;
 }
 
-#custom-date {
-  color: #8fbcbb;
+#custom-zeit.tracking {
+    background-color: @warning_color;
 }
 
 #battery {
-  color: #a3be8c;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
 }
 
-@keyframes blink {
-  to {
-    background-color: #ffffff;
-    color: black;
-  }
+#battery.warning {
+    color: @warning_color;
 }
 
-#battery.charging {
-  color: #a3be8c;
+#battery.critical {
+    color: @error_color;
 }
 
-#battery.critical:not(.charging) {
-  background-color: #f53c3c;
-  color: #ffffff;
-  animation-name: blink;
-  animation-duration: 0.5s;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-  animation-direction: alternate;
+#battery.warning.discharging {
+    animation-name: blink-warning;
+    animation-duration: 3s;
 }
 
-#network {
-  color: #ebcb8b;
-  border-radius: 5px 5px 0px 0px;
-  margin-left: 5px;
-  margin-right: 5px;
-  margin-top: 5px;
-  padding-bottom: 0;
-}
-
-#pulseaudio {
-  color: #ebcb8b;
-  border-radius: 0px 0px 0px 0px;
-  margin-left: 5px;
-  margin-right: 5px;
-  padding: 0;
-}
-
-#tray {
-  color: #ebcb8b;
-  border-radius: 0px 0px 0px 0px;
-  margin-left: 5px;
-  margin-right: 5px;
-  padding: 0;
+#battery.critical.discharging {
+    animation-name: blink-critical;
+    animation-duration: 2s;
 }
 
 #clock {
-  color: #b48ead;
-  border-radius: 0px 0px 5px 5px;
-  font-size: 12px;
-  margin-left: 5px;
-  margin-right: 5px;
+    font-weight: bold;
 }
 
-#custom-power {
-  color: #2e3440;
-  background-color: #bf616a;
-  border-radius: 5px;
-  margin: 5px;
-  padding-top: 5px;
+#cpu.warning {
+    color: @warning_color;
 }
 
+#cpu.critical {
+    color: @error_color;
+}
+
+#custom-menu {
+    padding-left: 8px;
+    padding-right: 13px;
+}
+
+#memory {
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+#memory.warning {
+    color: @warning_color;
+}
+
+#memory.critical {
+    color: @error_color;
+    animation-name: blink-critical;
+    animation-duration: 2s;
+}
+
+#mode {
+    background: @background_color;
+}
+
+#network.disconnected {
+    color: @warning_color;
+}
+
+#pulseaudio.muted {
+    color: @warning_color;
+}
+
+#temperature.critical {
+    color: @error_color;
+}
+
+#workspaces button {
+    border-top: 2px solid transparent;
+    /* To compensate for the top border and still have vertical centering */
+    padding-bottom: 2px;
+    padding-left: 10px;
+    padding-right: 10px;
+    color: @theme_selected_bg_color;
+}
+
+#workspaces button.focused {
+    border-color: @theme_selected_bg_color;
+}
+
+#workspaces button.urgent {
+    border-color: @error_color;
+    color: @error_color;
+}
+
+#custom-pacman {
+    color: @warning_color;
+}
+
+#bluetooth.disabled {
+    color: @warning_color;
+}
+
+#custom-wf-recorder {
+    color: @error_color;
+    padding-right: 10px;
+}
+
+@define-color theme_fg_color #cbbfbf;
+@define-color theme_text_color #b5abab;
+@define-color theme_bg_color #222222;
+@define-color theme_base_color #262626;
+@define-color theme_selected_bg_color #F0544C;
+@define-color theme_selected_fg_color #ffffff;
+@define-color fg_color #cbbfbf;
+@define-color text_color #b5abab;
+@define-color bg_color #222222;
+@define-color base_color #262626;
+@define-color selected_bg_color #F0544C;
+@define-color selected_fg_color #ffffff;
+@define-color insensitive_bg_color #272727;
+@define-color insensitive_fg_color alpha(rgba(203, 191, 191, 0.45), 0.5);
+@define-color insensitive_base_color #262626;
+@define-color theme_unfocused_fg_color #cbbfbf;
+@define-color theme_unfocused_text_color #b5abab;
+@define-color theme_unfocused_bg_color #222222;
+@define-color theme_unfocused_base_color #262626;
+@define-color borders rgba(0, 0, 0, 0.25);
+@define-color unfocused_borders rgba(0, 0, 0, 0.25);
+@define-color warning_color #F27835;
+@define-color error_color #FC4138;
+@define-color success_color #3498db;
+@define-color placeholder_text_color #A8A8A8;
+@define-color link_color #f8aeaa;
+@define-color content_view_bg #262626;
+@define-color text_view_bg #171717;
+@define-color wm_title alpha(#d0c8c8, 0.8);
+@define-color wm_unfocused_title alpha(#d0c8c8, 0.5);
+@define-color wm_bg #1a1a1a;
+@define-color wm_bg_unfocused #272727;
+@define-color wm_highlight #222222;
+@define-color wm_shadow alpha(black, 0.35);
+@define-color wm_button_close_bg #cc575d;
+@define-color wm_button_close_hover_bg #d7787d;
+@define-color wm_button_close_active_bg #be3841;
+@define-color wm_icon_close_bg #1a1a1a;
+@define-color wm_button_hover_bg #343434;
+@define-color wm_button_active_bg #F0544C;
+@define-color wm_button_hover_border #101010;
+@define-color wm_icon_bg #d0c8c8;
+@define-color wm_icon_unfocused_bg #534747;
+@define-color wm_icon_hover_bg #d0c8c8;
+@define-color wm_icon_active_bg #ffffff;
+@define-color budgie_tasklist_indicator_color #F0544C;
+@define-color budgie_tasklist_indicator_color_active #F0544C;
+@define-color budgie_tasklist_indicator_color_active_window #913d39;
+@define-color budgie_tasklist_indicator_color_attention #F27835;
+@define-color STRAWBERRY_100 #FF9262;
+@define-color STRAWBERRY_300 #FF793E;
+@define-color STRAWBERRY_500 #F15D22;
+@define-color STRAWBERRY_700 #CF3B00;
+@define-color STRAWBERRY_900 #AC1800;
+@define-color ORANGE_100 #FFDB91;
+@define-color ORANGE_300 #FFCA40;
+@define-color ORANGE_500 #FAA41A;
+@define-color ORANGE_700 #DE8800;
+@define-color ORANGE_900 #C26C00;
+@define-color BANANA_100 #FFFFA8;
+@define-color BANANA_300 #FFFA7D;
+@define-color BANANA_500 #FFCE51;
+@define-color BANANA_700 #D1A023;
+@define-color BANANA_900 #A27100;
+@define-color LIME_100 #A2F3BE;
+@define-color LIME_300 #8ADBA6;
+@define-color LIME_500 #73C48F;
+@define-color LIME_700 #479863;
+@define-color LIME_900 #1C6D38;
+@define-color BLUEBERRY_100 #94A6FF;
+@define-color BLUEBERRY_300 #6A7CE0;
+@define-color BLUEBERRY_500 #3F51B5;
+@define-color BLUEBERRY_700 #213397;
+@define-color BLUEBERRY_900 #031579;
+@define-color GRAPE_100 #D25DE6;
+@define-color GRAPE_300 #B84ACB;
+@define-color GRAPE_500 #9C27B0;
+@define-color GRAPE_700 #830E97;
+@define-color GRAPE_900 #6A007E;
+@define-color COCOA_100 #9F9792;
+@define-color COCOA_300 #7B736E;
+@define-color COCOA_500 #574F4A;
+@define-color COCOA_700 #463E39;
+@define-color COCOA_900 #342C27;
+@define-color SILVER_100 #EEE;
+@define-color SILVER_300 #CCC;
+@define-color SILVER_500 #AAA;
+@define-color SILVER_700 #888;
+@define-color SILVER_900 #666;
+@define-color SLATE_100 #888;
+@define-color SLATE_300 #666;
+@define-color SLATE_500 #444;
+@define-color SLATE_700 #222;
+@define-color SLATE_900 #111;
+@define-color BLACK_100 #474341;
+@define-color BLACK_300 #403C3A;
+@define-color BLACK_500 #393634;
+@define-color BLACK_700 #33302F;
+@define-color BLACK_900 #2B2928;
