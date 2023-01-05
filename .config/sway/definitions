@@ -27,7 +27,7 @@ set $background /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png
 # Your preferred terminal emulator
 set $term $HOME/.config/sway/scripts/foot.sh
 set $term_cwd $term -D "$(swaycwd 2>/dev/null || echo $HOME)"
-set $term_float footclient -a floating_shell
+set $term_float footclient -a floating_shell -W 85x30
 
 # onscreen bar
 set $onscreen_bar bash $HOME/.config/sway/scripts/wob.sh "$accent-color" "$background-color"
@@ -79,7 +79,7 @@ set $swayidle swayidle -w \
     timeout $idle_timeout 'light -G > /tmp/brightness && light -S 10' resume 'light -S $([ -f /tmp/brightness ] && cat /tmp/brightness || echo 100%)' \
     timeout $locking_timeout 'exec $locking' \
     timeout $screen_timeout 'swaymsg "output * dpms off"' \
-    timeout $locking_timeout 'systemctl suspend' \
+    timeout 1200 'systemctl suspend' \
     resume 'swaymsg "output * dpms on"' \
     before-sleep 'playerctl pause' \
     before-sleep 'exec $locking'
@@ -128,7 +128,7 @@ set $screenshot_selection_upload $pipe_selection | $swappy_pipe | $upload_pipe
 set $autostart_dex '[ -x "$(command -v dex)" ] && gdbus wait --session org.kde.StatusNotifierWatcher && dex --autostart'
 set $flashfocus '[ -x "$(command -v flashfocus)" ] && flashfocus'
 set $wlsunset '[ -x "$(command -v wlsunset)" ] && $HOME/.config/sway/scripts/sunset.sh "on"'
-set $autotiling '[ -x "$(command -v autotiling)" ] && autotiling'
+set $autotiling '[ -x "$(command -v autotiling-rs)" ] && autotiling-rs'
 set $foot_server '[ -x "$(command -v foot)" ] && $HOME/.config/sway/scripts/foot.sh --server'
 set $help_menu '[ -x "$(command -v nwg-wrapper)" ] && [ -f $HOME/.config/nwg-wrapper/help.sh ] && $HOME/.config/sway/scripts/help.sh'
 set $workspace_icons '[ -x "$(command -v sworkstyle)" ] && sworkstyle -d -l info &> /tmp/sworkstyle.log'

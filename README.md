@@ -2,9 +2,12 @@
 some configurations
 
 ### Depends on
+autotiling-rs
 bluez
 bluez-utils
 btop
+cliphist
+dex
 fcitx5
 foot
 foot-terminfo
@@ -33,5 +36,7 @@ sworkstyle
 ttf-comfortaa
 ttf-liberation
 waybar-lily
+wl-clipboard
 wob
+xdg-desktop-portal-wlr
 xorg-xrdb
