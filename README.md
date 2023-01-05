@@ -11,7 +11,6 @@ foot-terminfo
 gtk4
 inotify-tools
 jq
-kanshi
 kvantum
 libappindicator-gtk3
 mako
@@ -19,12 +18,14 @@ mpd
 nerd-fonts-robotomono
 noto-fonts-cjk
 noto-fonts-emoji
+pipewire-jack
 pipewire-pulse
 playerctl
 polkit-gnome
 pulsemixer
+python-requests
 qt5-wayland
-rofi-lbonn-wayland
+rofi-lbonn-wayland-only-git
 slurp
 swappy
 sway-im-git

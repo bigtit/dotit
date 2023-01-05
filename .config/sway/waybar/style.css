@@ -194,7 +194,7 @@ window#waybar {
     color: @warning_color;
 }
 
-#bluetooth.disabled {
+#bluetooth.disabled, .off {
     color: @warning_color;
 }
 

@@ -88,9 +88,6 @@ city = ""
 temperature = "C"
 distance = "km"
 
-if os.environ['LC_MEASUREMENT']:
-    current_locale = os.environ['LC_MEASUREMENT'].split('.')[0]
-
 argumentList = sys.argv[1:]
 options = "t:c:d:"
 long_options = ["temperature=", "city=", "distance="]
