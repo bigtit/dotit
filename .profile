@@ -1,9 +1,3 @@
-#
-# ~/.bash_profile
-#
-
-[[ -f ~/.bashrc ]] && . ~/.bashrc
-
 #!/bin/sh
 # make default editor vim
 export EDITOR=vim

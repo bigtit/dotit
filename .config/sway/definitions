@@ -27,6 +27,7 @@ set $background /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png
 # Your preferred terminal emulator
 set $term $HOME/.config/sway/scripts/foot.sh
 set $term_cwd $term -D "$(swaycwd 2>/dev/null || echo $HOME)"
+# set foot dimension in order to accommondate btop
 set $term_float footclient -a floating_shell -W 85x30
 
 # onscreen bar
@@ -75,11 +76,12 @@ set $rofi_bluetooth $HOME/.config/sway/scripts/rofi-bluetooth.sh $rofi_theme
 set $idle_timeout 240
 set $locking_timeout 300
 set $screen_timeout 600
+set $suspend_timeout 1200
 set $swayidle swayidle -w \
     timeout $idle_timeout 'light -G > /tmp/brightness && light -S 10' resume 'light -S $([ -f /tmp/brightness ] && cat /tmp/brightness || echo 100%)' \
     timeout $locking_timeout 'exec $locking' \
     timeout $screen_timeout 'swaymsg "output * dpms off"' \
-    timeout 1200 'systemctl suspend' \
+    timeout $suspend_timeout 'systemctl suspend' \
     resume 'swaymsg "output * dpms on"' \
     before-sleep 'playerctl pause' \
     before-sleep 'exec $locking'

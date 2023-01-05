@@ -21,10 +21,10 @@
     "modules-center": ["custom/wf-recorder", "sway/mode", "custom/weather"],
     "modules-right": [
         // informational
-        "sway/language",
-        "custom/github",
+        // "sway/language",
+        // "custom/github",
         "custom/clipboard",
-        "custom/zeit",
+        // "custom/zeit",
         "cpu",
         "memory",
         "battery",
@@ -43,7 +43,7 @@
 
         // system
         "custom/sunset",
-        "custom/pacman",
+        // "custom/pacman",
 
         "tray",
         "clock"

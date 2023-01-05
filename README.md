@@ -1,6 +1,3 @@
-# configs
-some configurations
-
 ### Depends on
 autotiling-rs
 bluez
@@ -21,6 +18,7 @@ mako
 mpd
 nerd-fonts-robotomono
 noto-fonts-cjk
+noto-fonts-emoji
 pipewire-pulse
 playerctl
 polkit-gnome
@@ -29,14 +27,17 @@ qt5-wayland
 rofi-lbonn-wayland
 slurp
 swappy
-sway-hidpi-git
+sway-im-git
 swayidle
-swaylock
+swaylock-effects
 sworkstyle
 ttf-comfortaa
 ttf-liberation
 waybar-lily
 wl-clipboard
+wlroots-hidpi-xprop-git
+wlsunset
 wob
 xdg-desktop-portal-wlr
 xorg-xrdb
+xorg-xwayland-hidpi-xprop

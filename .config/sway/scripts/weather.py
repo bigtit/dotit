@@ -91,17 +91,13 @@ distance = "km"
 if os.environ['LC_MEASUREMENT']:
     current_locale = os.environ['LC_MEASUREMENT'].split('.')[0]
 
-if current_locale == "en_US":
-    temperature = "F"
-    distance = "miles"
-
 argumentList = sys.argv[1:]
 options = "t:c:d:"
 long_options = ["temperature=", "city=", "distance="]
 
 try:
     args, values = getopt.getopt(argumentList, options, long_options)
-     
+
     for currentArgument, currentValue in args:
         if currentArgument in ("-t", "--temperature"):
             temperature = currentValue[0].upper()
@@ -114,8 +110,8 @@ try:
                 raise Exception("distance unit is neither km, nor miles", distance)
 
         else:
-            city = urllib.parse.quote(currentValue)            
-  
+            city = urllib.parse.quote(currentValue)
+
 except getopt.error as err:
     print (str(err))
     exit(1)
