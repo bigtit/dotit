@@ -176,7 +176,8 @@
         "format": "",
         "format-disabled": "",
         "format-off": "",
-        "on-click": "swaymsg exec \\$rofi_bluetooth",
+        // "on-click": "swaymsg exec \\$rofi_bluetooth",
+        "on-click": "swaymsg exec \\$term_float bluetuith",
         "on-click-right": "rfkill toggle bluetooth",
         "tooltip-format": "{}"
     },

@@ -2,6 +2,7 @@
 autotiling-rs
 bluez
 bluez-utils
+bluetuith
 btop
 cliphist
 dex
