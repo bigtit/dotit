@@ -216,7 +216,11 @@ tooltip {
     /* padding-bottom: 2px; */
     padding-left: 4px;
     padding-right: 4px;
-    color: @text_color;
+    /*color: @text_color;*/
+}
+
+#taskbar button.active {
+    border-bottom: 2px solid @theme_selected_bg_color;
 }
 
 @define-color theme_fg_color #cbbfbf;
