@@ -47,6 +47,7 @@
     // Modules
     // -------------------------------------------------------------------------
     "wlr/taskbar": {
+        "icon-size": 28,
         "format": "{icon}",
         "tooltip": true,
         "tooltip-format": "{title}\n{app_id}:{state}",
