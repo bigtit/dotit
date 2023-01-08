@@ -2,12 +2,13 @@
 # https://github.com/francma/wob/wiki/wob-wrapper-script
 #$1 - accent color. $2 - background color. $3 - new value
 # returns 0 (success) if $1 is running and is attached to this sway session; else 1
-color1=#a01685
-color2=#141a1b
+color1=#A01685
+color2=#141A1b
+SWAYSOCK=swaysock
 is_running_on_this_screen() {
-    pkill -0 "${color1}" || return 1
-    for pid in $( pgrep "${color1}" ); do
-        WOB_SWAYSOCK="$( tr '\0' '\n' < /proc/$pid/environ | awk -F'=' "/^SWAYSOCK/ {print ${color2}}" )"
+    pkill -0 $1 || return 1
+    for pid in $( pgrep "$1" ); do
+        WOB_SWAYSOCK="$( tr '\0' '\n' < /proc/$pid/environ | awk -F'=' "/^SWAYSOCK/ {print $2}" )"
         if [[ "$WOB_SWAYSOCK" == "$SWAYSOCK" ]]; then
             return 0
         fi
@@ -15,7 +16,7 @@ is_running_on_this_screen() {
     return 1
 }
 
-new_value=$3 # null or a percent; no checking!!
+new_value=$1 # null or a percent; no checking!!
 
 wob_pipe=~/.cache/$( basename $SWAYSOCK ).wob
 
@@ -26,9 +27,9 @@ ini=~/.config/wob.ini
 if [ ! -f "$ini" ]; then
     echo "anchor = top center" >>$ini
     echo "margin = 20" >>$ini
-    echo "border_color = ${1:1}" >>$ini
-    echo "bar_color = ${1:1}" >>$ini
-    echo "background_color = ${2:1}" >>$ini
+    echo "border_color = ${color1}" >>$ini
+    echo "bar_color = ${color1}" >>$ini
+    echo "background_color = ${color2}" >>$ini
 fi
 
 # wob does not appear in $(swaymsg -t get_msg), so:
