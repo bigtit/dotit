@@ -52,7 +52,10 @@
         "tooltip-format": "{title}\n{app_id}:{state}",
         "on-click": "minimize-raise",
         "on-click-middle": "close",
-        "on-click-right": "maximize"
+        "on-click-right": "maximize",
+        "ignore-list": [
+            "nil"
+        ]
     },
 
     "battery": {
@@ -179,7 +182,7 @@
         "format-disabled": "",
         "format-off": "",
         // "on-click": "swaymsg exec \\$rofi_bluetooth",
-        "on-click": "foot bluetuith",
+        "on-click": "foot bluetuith --set-theme-config='Adapter=red,Device=purple,MenuBar=blue'",
         "on-click-right": "rfkill toggle bluetooth",
         "tooltip-format": "{}"
     },
