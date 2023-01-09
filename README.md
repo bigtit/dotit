@@ -1,5 +1,6 @@
 ### Depends on
-autotiling-rs
+
+#### common
 bluez
 bluez-utils
 bluetuith
@@ -8,7 +9,6 @@ cliphist
 dex
 fcitx5
 foot
-foot-terminfo
 gtk4
 inotify-tools
 jq
@@ -25,21 +25,29 @@ playerctl
 polkit-gnome
 pulsemixer
 python-requests
+python-gobject
 qt5-wayland
-rofi-lbonn-wayland-only-git
 slurp
 swappy
-sway-im-git
 swayidle
 swaylock-effects
-sworkstyle
 ttf-comfortaa
 ttf-liberation
 waybar-lily
 wl-clipboard
-wlroots-hidpi-xprop-git
 wlsunset
 wob
 xdg-desktop-portal-wlr
 xorg-xrdb
+
+#### sway
+autotiling-rs
 xorg-xwayland-hidpi-xprop
+wlroots-hidpi-xprop-git
+sway-im-git
+sworkstyle
+
+#### wayfire
+xorg-xwayland-lily
+wlroots-lily-git
+wayfire-lily-git
