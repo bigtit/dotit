@@ -17,11 +17,13 @@
     "modules-left": ["custom/menu", "wlr/taskbar"],
     "modules-center": [],
     "modules-right": [
+        // player
+        "custom/media",
         // informational
         // "custom/clipboard",
         "cpu",
         "memory",
-        "battery",
+        // "battery",
         "temperature",
 
         // connecting
@@ -29,11 +31,10 @@
         "bluetooth",
 
         // media
-        "custom/playerctl",
         "idle_inhibitor",
         "custom/dnd",
         "pulseaudio",
-        "backlight",
+        // "backlight",
 
         // system
         "custom/sunset",
@@ -144,9 +145,9 @@
         },
         "tooltip-format": "{icon} {volume}% {format_source}",
         "on-click": "foot pulsemixer",
-        "on-click-middle": "$HOME/.config/waybar/scripts/wob.sh $(pactl set-sink-mute @DEFAULT_SINK@ toggle && pactl get-sink-mute @DEFAULT_SINK@ | sed -En '/no/ s/.*/$($sink_volume)/p; /yes/ s/.*/0/p')",
-        "on-scroll-up": "$HOME/.config/waybar/scripts/wob.sh $(pactl set-sink-volume @DEFAULT_SINK@ +5% && $sink_volume)",
-        "on-scroll-down": "$HOME/.config/waybar/scripts/wob.sh $(pactl set-sink-volume @DEFAULT_SINK@ -5% && $sink_volume)"
+        "on-click-middle": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+        "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +5%",
+        "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -5%"
     },
 
     "temperature": {
@@ -249,6 +250,7 @@
         "interval": "once",
         "tooltip": true,
         "return-type": "json",
+        "escape": true,
         "format": "{icon}",
         "format-icons": {
             "Playing": "",
@@ -260,6 +262,18 @@
         "on-scroll-up": "playerctl position 10+; pkill -RTMIN+5 waybar",
         "on-scroll-down": "playerctl position 10-; pkill -RTMIN+5 waybar",
         "signal": 5
+    },
+    "custom/media": {
+        "format": "{icon} {}",
+        "escape": true,
+        "return-type": "json",
+        "max-length": 40,
+        "on-click": "playerctl play-pause",
+        "on-click-right": "playerctl next",
+        "smooth-scrolling-threshold": 10,
+        "on-scroll-up": "playerctl position 10+",
+        "on-scroll-down": "playerctl position 10-",
+        "exec": "$HOME/.config/waybar/scripts/media.py 2>/dev/null"
     },
 
     "custom/clipboard": {
