@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+rofi -show powermenu -modi powermenu:$HOME/.config/waybar/scripts/rofi-powermenu0

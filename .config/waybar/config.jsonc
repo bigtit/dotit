@@ -175,7 +175,8 @@
 
     "custom/menu": {
         "format": "",
-        "on-click": "fuzzel",
+        "on-click": "rofi -show drun",
+        "on-click-right": "$HOME/.config/waybar/scripts/rofi-powermenu",
         "tooltip": false
     },
 
@@ -184,7 +185,7 @@
         "format-disabled": "",
         "format-off": "",
         // "on-click": "swaymsg exec \\$rofi_bluetooth",
-        "on-click": "foot bluetuith --set-theme-config='Adapter=red,Device=purple,MenuBar=blue'",
+        "on-click": "$HOME/.config/waybar/scripts/rofi-bluetooth",
         "on-click-right": "rfkill toggle bluetooth",
         "tooltip-format": "{}"
     },

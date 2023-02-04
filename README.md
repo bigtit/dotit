@@ -3,12 +3,10 @@
 #### common
 bluez
 bluez-utils
-bluetuith
-btop
 cliphist
-dex
 fcitx5
 foot
+foot-terminfo
 gtk4
 inotify-tools
 jq
@@ -19,6 +17,7 @@ mpd
 nerd-fonts-robotomono
 noto-fonts-cjk
 noto-fonts-emoji
+rofi-lbonn-wayland-git
 pipewire-jack
 pipewire-pulse
 playerctl
@@ -36,7 +35,6 @@ ttf-liberation
 waybar-lily
 wl-clipboard
 wlsunset
-wob
 xdg-desktop-portal-wlr
 xorg-xrdb
 
