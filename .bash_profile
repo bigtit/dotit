@@ -15,10 +15,11 @@ export MOZ_DBUS_REMOTE=1
 export GTK_CSD=0
 
 # qt wayland
-export QT_QPA_PLATFORM="wayland"
-export QT_QPA_PLATFORMTHEME=qt5ct
+# export QT_QPA_PLATFORM="wayland"
+eval which qt5ct
+[[ $? -eq 0 ]] && export QT_QPA_PLATFORMTHEME=qt5ct
 # export QT_STYLE_OVERRIDE=kvantum
-export QT_WAYLAND_DISABLE_WINDOWDECORATION="1"
+# export QT_WAYLAND_DISABLE_WINDOWDECORATION="1"
 
 #Java XWayland blank screens fix
 export _JAVA_AWT_WM_NONREPARENTING=1
@@ -30,24 +31,21 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 # add default location for zeit.db
 # export ZEIT_DB=~/.config/zeit.db
 
-# Disable hardware cursors. This might fix issues with
-# disappearing cursors
+# WLR fixes for NVIDIA
 # export WLR_NO_HARDWARE_CURSORS=1
+# export WLR_RENDERER=vulkan
 
-set -a
-source $HOME/.config/user-dirs.dirs
-set +a
-
+# AMDGPU
 # export RADV_PERFTEST=aco
 
 # fcitx5
-export GTK_IM_MODULE=fcitx
-export QT_IM_MODULE=fcitx
-export SDL_IM_MODULE=fcitx
-export INPUT_METHOD=fcitx
-export GLFW_IM_MODULE=fcitx
-export XMODIFIERS=@im=fcitx
+eval which fcitx5
+if [[ $? -eq 0 ]]; then
+    export GTK_IM_MODULE=fcitx
+    export QT_IM_MODULE=fcitx
+    export SDL_IM_MODULE=fcitx
+    export INPUT_METHOD=fcitx
+    export GLFW_IM_MODULE=fcitx
+    export XMODIFIERS=@im=fcitx
+fi
 
-# export QT_STYLE_OVERRIDE=kvantum
-export TERM=foot
-export TERMINAL=foot

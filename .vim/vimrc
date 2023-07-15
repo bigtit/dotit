@@ -1,7 +1,7 @@
 set ex
 set secure
-colo gruvbox
-set bg=dark
+colo deus
+"set bg=dark
 
 "common
 set nocp
