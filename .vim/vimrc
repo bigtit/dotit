@@ -1,6 +1,10 @@
 set ex
 set secure
-colo deus
+if &t_Co == 8 || $TERM == 'linux'
+    colo desert
+else
+    colo deus
+endif
 "set bg=dark
 
 "common
@@ -51,8 +55,7 @@ set stl=%<%F%m\ \[%{&ff}:%{&fenc}:%Y%{&bomb?'\:BOM':''}]\ \ \[%{strftime('%Y%m%d
 "scroll
 set so=3
 set sm
-set cul
-set cuc
+set cul cuc
 "bak
 set wb
 set nobk
