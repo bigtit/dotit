@@ -4,11 +4,12 @@
 bluez
 bluez-utils
 cliphist
-fcitx5
+fcitx5-chinese-addons
+fcitx5-configtool
 foot
 foot-terminfo
 gtk4
-inotify-tools
+libnotify
 jq
 kvantum
 libappindicator-gtk3
@@ -17,7 +18,7 @@ mpd
 nerd-fonts-robotomono
 noto-fonts-cjk
 noto-fonts-emoji
-rofi-lbonn-wayland-git
+fuzzel
 pipewire-jack
 pipewire-pulse
 playerctl
@@ -30,20 +31,14 @@ slurp
 swappy
 swayidle
 swaylock-effects
-ttf-comfortaa
 ttf-liberation
 waybar-lily
 wl-clipboard
-wlsunset
 xdg-desktop-portal-wlr
 xorg-xrdb
 
-#### sway
-autotiling-rs
-xorg-xwayland-hidpi-xprop
-wlroots-hidpi-xprop-git
-sway-im-git
-sworkstyle
+#### hyprland
+hyprland-hidpi-xprop-git
 
 #### wayfire
 xorg-xwayland-lily
