@@ -3,7 +3,7 @@ set secure
 if &t_Co == 8 || $TERM == 'linux'
     colo desert
 else
-    colo deus
+    colo slate
 endif
 "set bg=dark
 
