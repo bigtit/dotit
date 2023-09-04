@@ -52,6 +52,7 @@
     // -------------------------------------------------------------------------
     "wlr/taskbar": {
         "icon-size": 28,
+        "icon-theme": "Tela",
         "format": "{icon}",
         "tooltip": true,
         "tooltip-format": "{title}\n{app_id}:{state}",
