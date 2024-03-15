@@ -1,3 +1,5 @@
+[ -z "$PS1" ] && return
+
 pname=$(uname)
 # Shell colors
 GREEN="\[\e[0;32m\]"
@@ -43,6 +45,7 @@ export LC_COLLATE=C
 # history
 HISTCONTROL=ignoredups:erasedups
 shopt -s histappend
+shopt -s checkwinsize
 
 #bind 'TAB:menu-complete'
 if [[ $- =~ i ]]; then
