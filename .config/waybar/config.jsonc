@@ -1,361 +1,85 @@
-// =============================================================================
-//
-// Waybar configuration
-//
-
 {
-    // -------------------------------------------------------------------------
-    // Global configuration
-    // -------------------------------------------------------------------------
-
     "layer": "top",
-
-    // If height property would be not present, it'd be calculated dynamically
-    "height": 30,
     "position": "top",
-
-    "modules-left": [
-        // "wlr/workspaces",
-        "wlr/taskbar"
-    ],
-    "modules-center": [],
-    "modules-right": [
-        // player
-        "custom/media",
-        // informational
-        // "custom/clipboard",
-        "cpu",
-        "memory",
-        // "battery",
-        "temperature",
-
-        // connecting
-        "network",
-        "bluetooth",
-
-        // media
-        // "idle_inhibitor",
-        // "custom/dnd",
-        "pulseaudio",
-        // "backlight",
-
-        // system
-        // "custom/sunset",
-        "custom/weather",
-
-        "tray",
-        "clock"
-    ],
-
-    // -------------------------------------------------------------------------
-    // Modules
-    // -------------------------------------------------------------------------
-    "wlr/taskbar": {
-        "icon-size": 28,
-        "icon-theme": "Tela",
+    "height": 35,
+    "spacing": 6,
+    "modules-left": ["hyprland/workspaces", "hyprland/window"],
+    "modules-center": [""],
+    "modules-right": ["custom/media", "network", "pulseaudio", "memory", "cpu", "tray", "clock"],
+    "hyprland/workspaces": {
         "format": "{icon}",
-        "tooltip": true,
-        "tooltip-format": "{title}\n{app_id}:{state}",
-        "on-click": "minimize-raise",
-        "on-click-middle": "close",
-        "on-click-right": "maximize",
-        "ignore-list": [
-            "nil"
-        ]
-    },
-    "wlr/workspaces": {
-        "format": "{icon}",
-        "on-scroll-up": "hyprctl dispatch workspace e+1",
-        "on-scroll-down": "hyprctl dispatch workspace e-1",
+        "sort-by-number": true,
         "on-click": "activate",
-        "sort-by-number": true
+        "on-scroll-up": "hyprctl dispatch workspace e+1",
+        "on-scroll-down": "hyprctl dispatch workspace e-1"
     },
-
-    "battery": {
-        "interval": 30,
-        "states": {
-            "warning": 30,
-            "critical": 15
-        },
-        "format-charging": " {capacity}%",
-        "format": "{icon} {capacity}%",
-        "format-icons": ["", "", "", "", "", ""],
-        "tooltip": true
+    "hyprland/window": {
+        // "format": "\uf061 {}",
+        "foramt": "{icon}{}",
+        "icon": true,
+        "separate-outputs": true,
+        "max-length": 40
     },
-
-    "clock": {
-        "interval": 60,
-        "format": "{:%e %b %Y %H:%M}",
-        "tooltip": true,
-        "tooltip-format": "<big>{:%B %Y}</big>\n<tt>{calendar}</tt>",
-        "on-click": "foot ikhal"
-    },
-
-    "cpu": {
-        "interval": 5,
-        "format": "﬙ {usage}%",
-        "states": {
-            "warning": 70,
-            "critical": 90
-        },
-        "on-click": "foot htop"
-    },
-
-    "memory": {
-        "interval": 5,
-        "format": " {}%",
-        "states": {
-            "warning": 70,
-            "critical": 90
-        },
-        "on-click": "foot htop"
-    },
-
-    "network": {
-        "interval": 5,
-        "format-wifi": " ",
-        "format-ethernet": "",
-        "format-disconnected": "睊",
-        "tooltip-format": "{ifname} ({essid}): {ipaddr}",
-        "on-click": "foot nmtui"
-    },
-
-    "sway/mode": {
-        "format": "<span style=\"italic\">{}</span>",
-        "tooltip": false
-    },
-
-    "idle_inhibitor": {
-        "format": "{icon}",
-        "format-icons": {
-            "activated": "零",
-            "deactivated": "鈴"
-        },
-        "tooltip": true,
-        "tooltip-format-activated": "power-saving disabled",
-        "tooltip-format-deactivated": "power-saving enabled"
-    },
-
-    "backlight": {
-        "format": "{icon} {percent}%",
-        "format-icons": ["", "", ""],
-        "on-scroll-up": "swaymsg exec \\$brightness_up",
-        "on-scroll-down": "swaymsg exec \\$brightness_down"
-    },
-
-    "pulseaudio": {
-        "scroll-step": 5,
-        "format": "{icon} {volume}%{format_source}",
-        "format-muted": "婢 {format_source}",
-        "format-source": "",
-        "format-source-muted": " ",
-        "format-icons": {
-            "headphone": "",
-            "headset": "",
-            "default": ["奄", "奔", "墳"]
-        },
-        "tooltip-format": "{icon} {volume}% {format_source}",
-        "on-click": "foot pulsemixer",
-        "on-click-middle": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
-        "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +5%",
-        "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -5%"
-    },
-
-    "temperature": {
-        "critical-threshold": 90,
-        "interval": 5,
-        "format": "{icon} {temperatureC}°",
-        "format-icons": ["", "", ""],
-        "tooltip": false,
-        "on-click": "foot watch sensors"
-    },
-
     "tray": {
         "icon-size": 21,
-        "spacing": 5
+        "spacing": 10
     },
-
-    "custom/pacman": {
-        "format": " {}",
-        "interval": 3600,
-        "exec-if": "[ $(pamac checkupdates -q | wc -l) -gt 0 ]",
-        "exec": "pamac checkupdates -q | wc -l",
-        "on-click": "pamac-manager --updates; pkill -RTMIN+4 waybar",
-        "signal": 4
+    "clock": {
+        "interval": 1,
+        "format": "\uf017 {:%H:%M:%S}",
+        "format-alt": "\uf133 {:%Y-%m-%d %H:%M:%S}",
+        "tooltip": true,
+        "tooltip-format": "<big>{:%B %Y}</big>\n<tt>{calendar}</tt>"
     },
-
-    "custom/menu": {
-        "format": "",
-        "on-click": "rofi -show drun",
-        "on-click-right": "$HOME/.config/waybar/scripts/rofi-powermenu",
+    "cpu": {
+        "interval": 1,
+        "format": " {usage}%",
         "tooltip": false
     },
-
-    "bluetooth": {
-        "format": "",
-        "format-disabled": "",
-        "format-off": "",
-        // "on-click": "swaymsg exec \\$rofi_bluetooth",
-        "on-click": "$HOME/.config/waybar/scripts/rofi-bluetooth",
-        "on-click-right": "rfkill toggle bluetooth",
-        "tooltip-format": "{}"
+    "memory": {
+        "interval": 1,
+        "format": " {used}G",
+        "tooltip": false
     },
-
-    "sway/language": {
-        "format": " {}",
-        "min-length": 5,
-        "tooltip": false,
-        "on-click": "swaymsg input $(swaymsg -t get_inputs --raw | jq '[.[] | select(.type == \"keyboard\")][0] | .identifier') xkb_switch_layout next"
+    "network": {
+        "interval": 1,
+        "format-wifi": " {essid} ({signalStrength}%)",
+        "format-ethernet": "{ifname}",
+        "format-linked": " {ifname} (No IP)",
+        "format-disconnected": "⚠ Disconnected",
+        "tooltip-format": "⚠  {bandwidthUpBits}/{bandwidthDownBits}",
+        "format-alt": "{ifname}: {ipaddr}/{cidr}"
     },
-
-    "custom/scratchpad": {
-        "interval": "once",
-        "return-type": "json",
-        "format": "{icon}",
+    "pulseaudio": {
+        "scroll-step": 5,
+        "format": "{icon} {volume}%",
+        "format-muted": "",
+        "format-bluetooth": "{icon} {volume}%",
+        "format-bluetooth-muted": " {icon}",
         "format-icons": {
-            "one": "类",
-            "many": "缾"
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
         },
-        "exec": "/bin/sh $HOME/.config/sway/scripts/scratchpad.sh",
-        "on-click": "swaymsg 'scratchpad show'",
-        "signal": 7
-    },
-
-    "custom/sunset": {
-        "interval": "once",
-        "tooltip": false,
-        "return-type": "json",
-        "format": "{icon}",
-        "format-icons": {
-            "on": "",
-            "off": ""
-        },
-        "exec": "fallback_latitude=50.1 fallback_longitude=8.7 latitude= longitude= $HOME/.config/waybar/scripts/sunset.sh",
-        "on-click": "$HOME/.config/waybar/scripts/sunset.sh toggle; pkill -RTMIN+6 waybar",
-        "exec-if": "$HOME/.config/waybar/scripts/sunset.sh check",
-        "signal": 6
-    },
-
-    "custom/wf-recorder": {
-        "interval": "once",
-        "return-type": "json",
-        "format": "{}",
-        "tooltip-format": "{tooltip}",
-        "exec": "echo '{\"class\": \"recording\",\"text\":\"雷\",\"tooltip\":\"press $mod+Esc to stop recording\"}'",
-        "exec-if": "pgrep wf-recorder",
-        "on-click": "killall -s SIGINT wf-recorder",
-        "signal": 8
-    },
-
-    "custom/github": {
-        "interval": 300,
-        "tooltip": false,
-        "return-type": "json",
-        "format": " {}",
-        "exec": "gh api '/notifications' -q '{ text: length }' | cat -",
-        "exec-if": "[ -x \"$(command -v gh)\" ] && gh auth status 2>&1 | grep -q -m 1 'Logged in' && gh api '/notifications' -q 'length' | grep -q -m 1 '0' ; test $? -eq 1",
-        "on-click": "xdg-open https://github.com/notifications && sleep 30 && pkill -RTMIN+4 waybar",
-        "signal": 4
-    },
-
-    "custom/playerctl": {
-        "interval": "once",
-        "tooltip": true,
-        "return-type": "json",
-        "escape": true,
-        "format": "{icon}",
-        "format-icons": {
-            "Playing": "",
-            "Paused": "奈"
-        },
-        "exec": "playerctl metadata --format '{\"alt\": \"{{status}}\", \"tooltip\": \"{{playerName}}:  {{markup_escape(title)}} - {{markup_escape(artist)}}\" }'",
-        "on-click": "playerctl play-pause; pkill -RTMIN+5 waybar",
-        "on-click-right": "playerctl next; pkill -RTMIN+5 waybar",
-        "on-scroll-up": "playerctl position 10+; pkill -RTMIN+5 waybar",
-        "on-scroll-down": "playerctl position 10-; pkill -RTMIN+5 waybar",
-        "signal": 5
+        "on-click-right": "pavucontrol"
     },
     "custom/media": {
-        "format": "{icon} {}",
-        "escape": true,
+        "format": "{icon} {0}",
         "return-type": "json",
         "max-length": 40,
+        "format-icons": {
+            "spotify": "",
+            "default": "🎜"
+        },
         "on-click": "playerctl play-pause",
-        "on-click-right": "playerctl next",
         "smooth-scrolling-threshold": 10,
         "on-scroll-up": "playerctl position 10+",
         "on-scroll-down": "playerctl position 10-",
-        "exec": "$HOME/.config/waybar/scripts/media.py 2>/dev/null"
-    },
-
-    "custom/clipboard": {
-        "format": "",
-        "interval": "once",
-        "return-type": "json",
-        "on-click": "swaymsg -q exec '$clipboard'; pkill -RTMIN+9 waybar",
-        "on-click-right": "swaymsg -q exec '$clipboard-del'; pkill -RTMIN+9 waybar",
-        "on-click-middle": "rm -f ~/.cache/cliphist/db; pkill -RTMIN+9 waybar",
-        "exec": "printf '{\"tooltip\":\"%s\"}' $(cliphist list | wc -l)' item(s) in the clipboard\r(Mid click to clear)'",
-        "exec-if": "[ -x \"$(command -v cliphist)\" ] && [ $(cliphist list | wc -l) -gt 0 ]",
-        "signal": 9
-    },
-
-    "custom/weather": {
-        "icon-size": 42,
-        "format": "{icon} {}",
-        "tooltip": true,
-        "interval": 3600,
-        // accepts -c/--city <city> -t/--temperature <C/F> -d/--distance <km/miles>
-        "exec": "$HOME/.config/waybar/scripts/weather.py -t C -d km -c Hangzhou",
-        "return-type": "json",
-        "format-icons": {
-            "Unknown": "",
-            "Cloudy": "摒",
-            "Fog": "",
-            "HeavyRain": "",
-            "HeavyShowers": "",
-            "HeavySnow": "",
-            "HeavySnowShowers": "ﰕ",
-            "LightRain": "",
-            "LightShowers": "",
-            "LightSleet": "",
-            "LightSleetShowers": "",
-            "LightSnow": "",
-            "LightSnowShowers": "ﭽ",
-            "PartlyCloudy": "",
-            "Sunny": "",
-            "ThunderyHeavyRain": "ﭼ",
-            "ThunderyShowers": "",
-            "ThunderySnowShowers": "",
-            "VeryCloudy": ""
-        }
-    },
-
-    "custom/zeit": {
-        "return-type": "json",
-        "interval": "once",
-        "format": "{icon}",
-        "format-icons": {
-            "tracking": "華",
-            "stopped": ""
-        },
-        "exec": "/bin/sh $HOME/.config/sway/scripts/zeit.sh status",
-        "on-click": "/bin/sh $HOME/.config/sway/scripts/zeit.sh click; pkill -RTMIN+10 waybar",
-        "exec-if": "[ -x \"$(command -v zeit)\" ]",
-        "signal": 10
-    },
-
-    "custom/dnd": {
-        "interval": "once",
-        "return-type": "json",
-        "format": "{}{icon}",
-        "format-icons": {
-            "default": "",
-            "dnd": "ﮡ"
-        },
-        "on-click": "makoctl mode | grep 'do-not-disturb' && makoctl mode -r do-not-disturb || makoctl mode -a do-not-disturb; pkill -RTMIN+11 waybar",
-        "on-click-right": "makoctl restore",
-        "exec": "printf '{\"alt\":\"%s\",\"tooltip\":\"mode: %s\"}' $(makoctl mode | grep -q 'do-not-disturb' && echo dnd || echo default) $(makoctl mode | tail -1)",
-        "signal": 11
+        "escape": true,
+        "exec": "$HOME/.config/waybar/scripts/mediaplayer.py 2> /dev/null"
     }
 }

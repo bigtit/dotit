@@ -1,279 +1,123 @@
-
-/* =============================================================================
- *
- * Waybar configuration
- *
- * import css definitions for current theme */
-
-/* -----------------------------------------------------------------------------
- * Keyframes
- * -------------------------------------------------------------------------- */
-
-@keyframes blink-warning {
-    70% {
-        color: @wm_icon_bg;
-    }
-
-    to {
-        color: @wm_icon_bg;
-        background-color: @warning_color;
-    }
-}
-
-@keyframes blink-critical {
-    70% {
-      color: @wm_icon_bg;
-    }
-
-    to {
-        color: @wm_icon_bg;
-        background-color: @error_color;
-    }
-}
-
-
-/* -----------------------------------------------------------------------------
- * Base styles
- * -------------------------------------------------------------------------- */
-
-/* Reset all styles */
 * {
-    border: none;
-    border-radius: 0;
-    min-height: 0;
-    margin: 0;
-    padding: 0;
-    font-family: "RobotoMono Nerd Font", "Roboto Mono", sans-serif;
-}
-
-/* The whole bar */
-window#waybar {
-    background: @theme_bg_color;
-    color: @wm_icon_bg;
+    /* `otf-font-awesome` is required to be installed for icons */
+    font-family: "Fira Mono";
+    font-weight: 500;
     font-size: 14px;
-    opacity: 0.9;
+
+    border-radius: 8px;
+    text-shadow: none;
+
+    transition-property: background;
+    transition-duration: 0.2s;
+}
+#window {
+    font-size: 10px;
 }
 
-tooltip {
-    border-radius: 0;
-    background-color: @theme_bg_color;
-    opacity: 0.8;
+window#waybar {
+    background-color: transparent;
 }
 
-/* Each module */
-#custom-weather,
-#custom-pacman,
-#custom-menu,
-#custom-help,
-#custom-scratchpad,
-#custom-github,
-#custom-clipboard,
-#custom-zeit,
-#custom-dnd,
-#bluetooth,
-#battery,
-#clock,
-#cpu,
-#memory,
-#mode,
-#network,
-#pulseaudio,
-#temperature,
-#idle_inhibitor,
-#backlight,
-#language,
-#custom-sunset,
-#custom-playerctl,
-#tray {
-    padding-left: 10px;
-    padding-right: 10px;
+window#waybar.hidden {
+    opacity: 0.2;
 }
 
-/* -----------------------------------------------------------------------------
- * Module styles
- * -------------------------------------------------------------------------- */
+#workspaces {
+    margin-top: 6px;
+    background: rgba(16, 20, 24, 0.5);
+    transition: none;
 
-#custom-scratchpad, #custom-menu, #clock  {
-    color: @theme_bg_color;
-    background-color: @theme_selected_bg_color;
+    font-size: 12px;
 }
 
-#custom-zeit.tracking {
-    background-color: @warning_color;
+#workspaces button {
+    border: none;
+    padding: 0 10px;
+    background-color: transparent;
+    color: #ffffff;
 }
 
-#battery {
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
+#workspaces button:hover {
+    background: rgba(255, 255, 255, 0.5);
 }
 
-#battery.warning {
-    color: @warning_color;
+#workspaces button.active {
+    background: #fff9bb;
+    color: #000000;
 }
 
-#battery.critical {
-    color: @error_color;
+#workspaces button.active:hover {
+    background: #fffcdf;
 }
 
-#battery.warning.discharging {
-    animation-name: blink-warning;
-    animation-duration: 3s;
-}
-
-#battery.critical.discharging {
-    animation-name: blink-critical;
-    animation-duration: 2s;
-}
-
-#clock {
-    font-weight: bold;
-}
-
-#cpu.warning {
-    color: @warning_color;
-}
-
-#cpu.critical {
-    color: @error_color;
-}
-
-#custom-menu {
-    padding-left: 8px;
-    padding-right: 13px;
-}
-
-#memory {
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
-}
-
-#memory.warning {
-    color: @warning_color;
-}
-
-#memory.critical {
-    color: @error_color;
-    animation-name: blink-critical;
-    animation-duration: 2s;
+#workspaces button.urgent {
+    background-color: #eb4d4b;
 }
 
 #mode {
-    background: @background_color;
+    background-color: #64727D;
+    border-bottom: 3px solid #ffffff;
 }
 
-#network.disconnected {
-    color: @warning_color;
+#clock,
+#cpu,
+#memory,
+#network,
+#pulseaudio,
+#tray,
+#mode,
+#window {
+    margin-top: 6px;
+    padding: 0 12px;
+    color: #ffffff;
 }
 
-#pulseaudio.muted {
-    color: @warning_color;
+/* If workspaces is the leftmost module, omit left margin */
+.modules-left > widget:first-child > * {
+    margin-left: 16px;
 }
 
-#temperature.critical {
-    color: @error_color;
+/* If workspaces is the rightmost module, omit right margin */
+.modules-right > widget:last-child > * {
+    margin-right: 16px;
 }
 
-#workspaces>button {
-    /*border-top: 2px solid transparent;*/
-    /* To compensate for the top border and still have vertical centering */
-    padding-bottom: 2px;
-    padding-left: 10px;
-    padding-right: 10px;
-    color: @theme_selected_bg_color;
+#clock {
+    background-color: #eefff1;
+    color: #000000;
 }
 
-#workspaces>button.active {
-    color: @theme_bg_color;
-    background-color: @theme_selected_bg_color;
-}
-#workspaces>button:hover {
-    background-color: @fg_color;
+#cpu {
+    background-color: #FE968B;
+    color: #000000;
 }
 
-#workspaces>button.urgent {
-    border-color: @error_color;
-    color: @error_color;
-    animation-name: blink;
-    animation-duration: 1s;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
+#memory {
+    background-color: #FFEAAA;
+    color: #000000;
 }
 
-#custom-pacman {
-    color: @warning_color;
+#pulseaudio {
+    background-color: #b0f5e5;
+    color: #000000;
 }
 
-#bluetooth.disabled, .off {
-    color: @warning_color;
+#network {
+    background-color: #87ddff;
+    color: #000000;
 }
 
-#custom-wf-recorder {
-    color: @error_color;
-    padding-right: 10px;
+#tray {
+    background-color: #FFEAAA;
 }
 
-#taskbar {
-    padding-left: 4px;
-    padding-right: 4px;
+#window {
+    font-family: 'Fira Mono', 'Noto Sans CJK SC', sans-serif;
+    font-weight: 400;
+    background-color: #cbecff;
+    color: #000000;
 }
 
-#taskbar button {
-    /* border-top: 2px solid transparent; */
-    /* padding-bottom: 2px; */
-    padding-left: 4px;
-    padding-right: 4px;
-    /*color: @text_color;*/
+#custom-media {
+    color: #FFEAAA;
 }
-
-#taskbar button.active {
-    border-bottom: 2px solid @theme_selected_bg_color;
-}
-
-@define-color theme_fg_color #cbbfbf;
-@define-color theme_text_color #b5abab;
-@define-color theme_bg_color #222222;
-@define-color theme_base_color #262626;
-@define-color theme_selected_bg_color #F0544C;
-@define-color theme_selected_fg_color #ffffff;
-@define-color fg_color #cbbfbf;
-@define-color text_color #b5abab;
-@define-color bg_color #222222;
-@define-color base_color #262626;
-@define-color selected_bg_color #F0544C;
-@define-color selected_fg_color #ffffff;
-@define-color insensitive_bg_color #272727;
-@define-color insensitive_fg_color alpha(rgba(203, 191, 191, 0.45), 0.5);
-@define-color insensitive_base_color #262626;
-@define-color theme_unfocused_fg_color #cbbfbf;
-@define-color theme_unfocused_text_color #b5abab;
-@define-color theme_unfocused_bg_color #222222;
-@define-color theme_unfocused_base_color #262626;
-@define-color borders rgba(0, 0, 0, 0.25);
-@define-color unfocused_borders rgba(0, 0, 0, 0.25);
-@define-color warning_color #F27835;
-@define-color error_color #FC4138;
-@define-color success_color #3498db;
-@define-color placeholder_text_color #A8A8A8;
-@define-color link_color #f8aeaa;
-@define-color content_view_bg #262626;
-@define-color text_view_bg #171717;
-@define-color wm_title alpha(#d0c8c8, 0.8);
-@define-color wm_unfocused_title alpha(#d0c8c8, 0.5);
-@define-color wm_bg #1a1a1a;
-@define-color wm_bg_unfocused #272727;
-@define-color wm_highlight #222222;
-@define-color wm_shadow alpha(black, 0.35);
-@define-color wm_button_close_bg #cc575d;
-@define-color wm_button_close_hover_bg #d7787d;
-@define-color wm_button_close_active_bg #be3841;
-@define-color wm_icon_close_bg #1a1a1a;
-@define-color wm_button_hover_bg #343434;
-@define-color wm_button_active_bg #F0544C;
-@define-color wm_button_hover_border #101010;
-@define-color wm_icon_bg #d0c8c8;
-@define-color wm_icon_unfocused_bg #534747;
-@define-color wm_icon_hover_bg #d0c8c8;
-@define-color wm_icon_active_bg #ffffff;
