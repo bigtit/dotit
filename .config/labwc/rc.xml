@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+
+<!--
+  This is a very simple config file with many options missing. For a complete
+  set of options with comments, see docs/rc.xml.all
+-->
+
+<labwc_config>
+
+  <theme>
+    <name>Adwaita-Labwc-dark</name>
+    <titlebar layout=":menu,iconify,max,close" showTitle="yes" />
+    <cornerRadius>8</cornerRadius>
+    <dropShadows>yes</dropShadows>
+    <font name="sans" size="10" />
+  </theme>
+
+  <regions>
+      <region name="pip" x="78%" y="78%" height="20%" width="20%" />
+  </regions>
+
+  <keyboard>
+    <default />
+    <!-- Use a different terminal emulator -->
+    <keybind key="W-Return">
+      <action name="Execute" command="kitty" />
+    </keybind>
+    <!--
+      Remove a previously defined keybind
+      A shorter alternative is <keybind key="W-F4" />
+    -->
+    <keybind key="W-Space">
+      <action name="Execute" command="fuzzel" />
+    </keybind>
+  </keyboard>
+
+  <mouse>
+    <default />
+    <!-- Show a custom menu on desktop right click -->
+    <context name="Root">
+      <mousebind button="Right" action="Press">
+        <action name="ShowMenu" menu="some-custom-menu" />
+      </mousebind>
+    </context>
+  </mouse>
+  <windowRules>
+      <!-- action -->
+      <windowRule title="picture in picture">
+          <action name="ToggleSnapToRegion" region="pip"/>
+          <action name="ToggleAlwaysOnTop"/>
+      </windowRule>
+  </windowRules>
+
+</labwc_config>
