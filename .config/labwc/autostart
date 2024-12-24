@@ -14,7 +14,7 @@ pcmanfm-qt --desktop -w ~/Downloads/wp.jpg --wallpaper-mode fit >/dev/null 2>&1 
 # kanshi >/dev/null 2>&1 &
 
 # Launch a panel such as yambar or waybar.
-waybar -c ~/.config/waybar/config_stacking.jsonc -s ~/.config/waybar/style_stacking.css >/dev/null 2>&1 &
+waybar -c ~/.config/waybar/stacking/configv.jsonc -s ~/.config/waybar/stacking/stylev.css >/dev/null 2>&1 &
 
 # Enable notifications. Typically GNOME/KDE application notifications go
 # through the org.freedesktop.Notifications D-Bus API and require a client such
